@@ -67,18 +67,69 @@
     </div>
   </div>
 
-  <div class="gallery-item" data-group="hualien">
-    <div class="gallery-thumb">
-      <img src="assets/images/gallery/guofu-square.jpg" alt="國富社區方塊踏步與認知同步訓練" onerror="this.style.display='none'">
-      <span>👣 方塊踏步＋雙重認知任務</span>
+<div class="gallery-item" data-group="hualien" id="slideshow-guofu">
+    <div class="gallery-thumb" style="position: relative; overflow: hidden;">
+      <!-- 5張輪播圖片 -->
+      <img src="assets/images/gallery/114GoFu-1.jpg" alt="國富社區活動花絮 1" class="slide-img active" onerror="this.style.display='none'" style="width:100%; display:block;">
+      <img src="assets/images/gallery/114GoFu-2.jpg" alt="國富社區活動花絮 2" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/114GoFu-3.jpg" alt="國富社區活動花絮 3" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/114GoFu-4.jpg" alt="國富社區活動花絮 4" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/114GoFu-5.jpg" alt="國富社區活動花絮 5" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      
+      <span class="slide-badge" style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.6); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.85rem;">👣 方塊踏步＋雙重認知任務 (<span class="current-idx">1</span>/5)</span>
+      
+      <!-- 左右切換按鈕 -->
+      <button onclick="changeSlide(-1)" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❮</button>
+      <button onclick="changeSlide(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
     </div>
     <div class="gallery-caption">
       <span class="badge badge-green">花蓮市國富社區</span>
-      <h4>方塊踏步與認知同步訓練</h4>
-      <p>長者依循初級至高級步伐節奏移動，同步回答數字運算與詞語題目，笑聲不斷。</p>
+      <h4 class="slide-title">方塊踏步與認知同步訓練（一）</h4>
+      <p class="slide-desc">長者依循初級至高級步伐節奏移動，同步回答數字運算與詞語題目，笑聲不斷。</p>
     </div>
-  </div>
+</div>
 
+<!-- 輪播控制 Script -->
+<script>
+(function() {
+  const container = document.getElementById('slideshow-guofu');
+  const imgs = container.querySelectorAll('.slide-img');
+  const idxSpan = container.querySelector('.current-idx');
+  const titleEl = container.querySelector('.slide-title');
+  const descEl = container.querySelector('.slide-desc');
+  
+  // 可在此自訂每張圖對應的標題與說明文字
+  const slideData = [
+    { title: "方塊踏步與認知同步訓練（一）", desc: "長者依循初級至高級步伐節奏移動，同步回答數字運算與詞語題目，笑聲不斷。" },
+    { title: "方塊踏步與認知同步訓練（二）", desc: "專注於步伐跨越與方向變換，有效提升下肢肌力與平衡感。" },
+    { title: "方塊踏步與認知同步訓練（三）", desc: "透過雙重任務訓練，同時活化長者的身體機能與大腦認知。" },
+    { title: "方塊踏步與認知同步訓練（四）", desc: "志工與指導員在旁協助陪伴，確保每位長者安全參與運動。" },
+    { title: "方塊踏步與認知同步訓練（五）", desc: "活動圓滿結束，長者展現自信笑容，享受健康老化快樂過的生活。" }
+  ];
+
+  let currentIndex = 0;
+  const total = imgs.length;
+
+  window.changeSlide = function(n) {
+    imgs[currentIndex].style.display = 'none';
+    imgs[currentIndex].classList.remove('active');
+    
+    currentIndex = (currentIndex + n + total) % total;
+    
+    imgs[currentIndex].style.display = 'block';
+    imgs[currentIndex].classList.add('active');
+    idxSpan.textContent = currentIndex + 1;
+    titleEl.textContent = slideData[currentIndex].title;
+    descEl.textContent = slideData[currentIndex].desc;
+  }
+
+  // 自動播放（每 3 秒切換一次）
+  setInterval(function() {
+    changeSlide(1);
+  }, 3000);
+})();
+</script>
+  
   <div class="gallery-item" data-group="hualien">
     <div class="gallery-thumb">
       <img src="assets/images/gallery/nanchang-pelvic.jpg" alt="南昌與南華社區骨盆底肌訓練" onerror="this.style.display='none'">
