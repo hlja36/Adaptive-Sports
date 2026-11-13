@@ -1,0 +1,370 @@
+/* CL-14-0028 長者適性運動-增力穩行尿防漏、健康老化快樂過 全站樣式表 */
+:root {
+  --primary: #1b5e43;       /* 慈濟人文深綠 */
+  --primary-light: #e8f3ee;
+  --primary-dark: #12402d;
+  --secondary: #d97706;     /* 暖陽琥珀橘 */
+  --accent: #0284c7;        /* 清新水藍 */
+  --danger: #dc2626;
+  --success: #16a34a;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #1e293b;
+  --text-muted: #475569;
+  --border: #cbd5e1;
+  --radius: 12px;
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* 頂部識別與導覽列 */
+.top-bar {
+  background: var(--primary-dark);
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  padding: 6px 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+header {
+  background: var(--surface);
+  border-bottom: 3px solid var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-badge {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.brand-title h1 {
+  font-size: 1.15rem;
+  color: var(--primary-dark);
+  line-height: 1.3;
+}
+
+.brand-title span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+nav a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+nav a:hover, nav a.active {
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* 主版面容器 */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* Hero 橫幅 */
+.hero {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 65%, #2a7a58 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 40px 36px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+.hero h2 { font-size: 1.9rem; margin-bottom: 12px; line-height: 1.35; }
+.hero p { font-size: 1.05rem; opacity: 0.95; margin-bottom: 20px; }
+
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.hero-tags span {
+  background: rgba(255,255,255,0.18);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s, background 0.2s;
+}
+.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: var(--secondary); color: #fff; }
+.btn-secondary:hover { background: #b45309; }
+.btn-outline { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary-light); }
+
+/* 數據 KPI 卡片列 */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.kpi-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  border-left: 5px solid var(--primary);
+  box-shadow: var(--shadow);
+}
+.kpi-card.accent { border-left-color: var(--secondary); }
+.kpi-card.blue { border-left-color: var(--accent); }
+.kpi-card .kpi-num { font-size: 2rem; font-weight: 800; color: var(--primary-dark); line-height: 1.2; }
+.kpi-card.accent .kpi-num { color: var(--secondary); }
+.kpi-card.blue .kpi-num { color: var(--accent); }
+.kpi-card .kpi-label { font-size: 0.95rem; font-weight: 700; margin-top: 4px; }
+.kpi-card .kpi-sub { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+
+/* 區塊標題與卡片 */
+.section-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.section-header h2 { font-size: 1.45rem; color: var(--primary-dark); }
+.section-header p { color: var(--text-muted); font-size: 0.95rem; }
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.card h3 { color: var(--primary-dark); margin-bottom: 12px; font-size: 1.2rem; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+/* 標籤 Badge */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.badge-green { background: #dcfce7; color: #166534; }
+.badge-orange { background: #fef3c7; color: #92400e; }
+.badge-blue { background: #e0f2fe; color: #075985; }
+.badge-red { background: #fee2e2; color: #991b1b; }
+
+/* 表格樣式 */
+.table-wrap { overflow-x: auto; margin-top: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+th { background: var(--primary-light); color: var(--primary-dark); font-weight: 700; white-space: nowrap; }
+tr:hover td { background: #f8fafc; }
+
+/* 篩選器與頁籤 Tabs */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; align-items: center; }
+.filter-btn, .tab-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+  transition: all 0.2s;
+}
+.filter-btn.active, .tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* 手風琴 Accordion */
+.accordion-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; background: #fff; }
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  padding: 15px 20px;
+  background: #f8fafc;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-header:hover { background: var(--primary-light); }
+.accordion-body { padding: 18px 20px; display: none; border-top: 1px solid #e2e8f0; }
+.accordion-item.open .accordion-body { display: block; }
+
+/* 表單與輸入框 */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-weight: 700; margin-bottom: 5px; font-size: 0.92rem; color: var(--text); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fff;
+}
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(27, 94, 67, 0.15);
+}
+.form-group input[readonly] { background: #f1f5f9; color: #475569; font-weight: 700; }
+
+/* 提示框 Alert */
+.alert { padding: 14px 18px; border-radius: 10px; margin-bottom: 18px; font-weight: 600; }
+.alert-info { background: #e0f2fe; color: #075985; border-left: 5px solid #0284c7; }
+.alert-warning { background: #fef3c7; color: #92400e; border-left: 5px solid #d97706; }
+.alert-danger { background: #fee2e2; color: #991b1b; border-left: 5px solid #dc2626; }
+.alert-success { background: #dcfce7; color: #166534; border-left: 5px solid #16a34a; }
+
+/* 相簿網格與燈箱 */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.gallery-item {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.gallery-item:hover { transform: translateY(-3px); }
+.gallery-thumb {
+  height: 180px;
+  background: linear-gradient(135deg, #d1fae5, #e0f2fe);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-dark);
+  padding: 16px;
+  text-align: center;
+  position: relative;
+}
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.gallery-caption { padding: 12px 14px; }
+.gallery-caption h4 { font-size: 1rem; margin-bottom: 4px; color: var(--primary-dark); }
+.gallery-caption p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* 頁尾 Footer */
+footer {
+  background: var(--primary-dark);
+  color: #cbd5e1;
+  padding: 36px 20px;
+  font-size: 0.9rem;
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+footer h4 { color: #fff; margin-bottom: 10px; font-size: 1.05rem; }
+footer a { color: #a7f3d0; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding: 28px 22px; }
+  .menu-toggle { display: block; }
+  nav { width: 100%; display: none; }
+  nav.open { display: block; }
+  nav ul { flex-direction: column; }
+}

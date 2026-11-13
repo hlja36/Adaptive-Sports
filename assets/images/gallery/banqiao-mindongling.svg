@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+<title id="title">都會區據點示範與新師資見習</title><desc id="desc">新北板橋敏動齡：都會區據點示範與新師資見習。附件未提供原始照片，這是網站預覽用的圖像占位。</desc>
+<defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+<rect width="900" height="520" fill="url(#g)"/><circle cx="730" cy="120" r="110" fill="#1b5e43" opacity=".12"/><circle cx="790" cy="400" r="180" fill="#1b5e43" opacity=".08"/>
+<path d="M105 392c62-90 108-126 170-102 58 22 82 85 146 65 73-23 103-133 194-144 65-8 108 26 180 112v75H105z" fill="#1b5e43" opacity=".18"/>
+<rect x="76" y="74" width="76" height="76" rx="20" fill="#1b5e43" opacity=".95"/><path d="M97 112h34M114 95v34" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+<text x="76" y="250" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="30" font-weight="700" fill="#12402d">新北板橋敏動齡</text>
+<text x="76" y="304" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="34" font-weight="800" fill="#1e293b">都會區據點示範與新師資見習</text>
+<text x="76" y="445" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="22" fill="#475569">活動影像占位｜可替換為原始照片</text></svg>
