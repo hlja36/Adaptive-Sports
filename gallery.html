@@ -276,17 +276,66 @@
     </div>
   </div>
 
-  <div class="gallery-item" data-group="training">
-    <div class="gallery-thumb">
-      <img src="assets/images/gallery/training-2026.jpg" alt="115年雙和靜思堂新師資培訓" onerror="this.style.display='none'">
-      <span>🎓 115年新師資培訓與術科考試</span>
+<div class="gallery-item" data-group="training" id="slideshow-newtrain">
+    <div class="gallery-thumb" style="position: relative; overflow: hidden;">
+      <!-- 4張輪播圖片 -->
+      <img src="assets/images/gallery/115Newtrain1.jpg" alt="115年雙和靜思堂新師資培訓 1" class="slide-img active" onerror="this.style.display='none'" style="width:100%; display:block;">
+      <img src="assets/images/gallery/115Newtrain2.jpg" alt="115年雙和靜思堂新師資培訓 2" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Newtrain3.jpg" alt="115年雙和靜思堂新師資培訓 3" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Newtrain4.jpg" alt="115年雙和靜思堂新師資培訓 4" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      
+      <span class="slide-badge" style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.6); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.85rem;">🎓 115年新師資培訓與術科考試 (<span class="current-idx">1</span>/4)</span>
+      
+      <!-- 左右切換按鈕 -->
+      <button onclick="changeSlideNewtrain(-1)" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❮</button>
+      <button onclick="changeSlideNewtrain(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
     </div>
     <div class="gallery-caption">
       <span class="badge badge-orange">115年師資新訓_雙和靜思堂/慈濟大學</span>
-      <h4>24小時專業培訓與術科實作考核</h4>
-      <p>黃新作博士、黃森芳副教授與陳聰毅教授親自授課並進行一對一情境模擬術科評核。</p>
+      <h4 class="slide-title">24小時專業培訓與術科實作考核（一）</h4>
+      <p class="slide-desc">黃新作博士、黃森芳副教授與陳聰毅教授親自授課並進行一對一情境模擬術科評核。</p>
     </div>
-  </div>
+</div>
+
+<!-- 雙和新訓輪播控制 Script -->
+<script>
+(function() {
+  const container = document.getElementById('slideshow-newtrain');
+  const imgs = container.querySelectorAll('.slide-img');
+  const idxSpan = container.querySelector('.current-idx');
+  const titleEl = container.querySelector('.slide-title');
+  const descEl = container.querySelector('.slide-desc');
+  
+  // 可在此自訂每張圖對應的標題與說明文字
+  const slideData = [
+    { title: "24小時專業培訓與術科實作考核（一）", desc: "黃新作博士、黃森芳副教授與陳聰毅教授親自授課並進行一對一情境模擬術科評核。" },
+    { title: "24小時專業培訓與術科實作考核（二）", desc: "學員分組進行實務演練與動作操作，確保教學標準與安全性。" },
+    { title: "24小時專業培訓與術科實作考核（三）", desc: "講師們在旁細心指導各項肌力與骨盆底肌訓練技巧。" },
+    { title: "24小時專業培訓與術科實作考核（四）", desc: "結訓實作考核圓滿完成，為社區長者健康照護注入專業新血。" }
+  ];
+
+  let currentIndex = 0;
+  const total = imgs.length;
+
+  window.changeSlideNewtrain = function(n) {
+    imgs[currentIndex].style.display = 'none';
+    imgs[currentIndex].classList.remove('active');
+    
+    currentIndex = (currentIndex + n + total) % total;
+    
+    imgs[currentIndex].style.display = 'block';
+    imgs[currentIndex].classList.add('active');
+    idxSpan.textContent = currentIndex + 1;
+    titleEl.textContent = slideData[currentIndex].title;
+    descEl.textContent = slideData[currentIndex].desc;
+  }
+
+  // 自動播放（每 3 秒切換一張）
+  setInterval(function() {
+    changeSlideNewtrain(1);
+  }, 3000);
+})();
+</script>
 
   <div class="gallery-item" data-group="training">
     <div class="gallery-thumb">
