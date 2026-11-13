@@ -201,17 +201,68 @@
 })();
 </script>
   
-  <div class="gallery-item" data-group="hualien">
-    <div class="gallery-thumb">
-      <img src="assets/images/gallery/sanchong-sites.jpg" alt="花蓮縣新城鄉衛生局" onerror="this.style.display='none'">
-      <span>🏙️ 花蓮縣新城鄉</span>
+<div class="gallery-item" data-group="hualien" id="slideshow-sinchen">
+    <div class="gallery-thumb" style="position: relative; overflow: hidden;">
+      <!-- 5張輪播圖片 -->
+      <img src="assets/images/gallery/115Sinchen1.jpg" alt="花蓮縣新城鄉社區長照據點 1" class="slide-img active" onerror="this.style.display='none'" style="width:100%; display:block;">
+      <img src="assets/images/gallery/115Sinchen2.jpg" alt="花蓮縣新城鄉社區長照據點 2" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Sinchen3.jpg" alt="花蓮縣新城鄉社區長照據點 3" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Sinchen4.jpg" alt="花蓮縣新城鄉社區長照據點 4" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Sinchen5.jpg" alt="花蓮縣新城鄉社區長照據點 5" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      
+      <span class="slide-badge" style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.6); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.85rem;">🏙️ 花蓮縣新城鄉 (<span class="current-idx">1</span>/5)</span>
+      
+      <!-- 左右切換按鈕 -->
+      <button onclick="changeSlideSinchen(-1)" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❮</button>
+      <button onclick="changeSlideSinchen(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
     </div>
     <div class="gallery-caption">
       <span class="badge badge-blue">115年花蓮縣新城鄉</span>
-      <h4>花蓮縣新城鄉社區長照據點</h4>
-      <p>陳聰毅教授指導長者體能訓練。</p>
+      <h4 class="slide-title">花蓮縣新城鄉社區長照據點（一）</h4>
+      <p class="slide-desc">陳聰毅教授指導長者體能訓練。</p>
     </div>
-  </div>
+</div>
+
+<!-- 新城鄉輪播控制 Script -->
+<script>
+(function() {
+  const container = document.getElementById('slideshow-sinchen');
+  const imgs = container.querySelectorAll('.slide-img');
+  const idxSpan = container.querySelector('.current-idx');
+  const titleEl = container.querySelector('.slide-title');
+  const descEl = container.querySelector('.slide-desc');
+  
+  // 可在此自訂每張圖對應的標題與說明文字
+  const slideData = [
+    { title: "花蓮縣新城鄉社區長照據點（一）", desc: "陳聰毅教授指導長者體能訓練。" },
+    { title: "花蓮縣新城鄉社區長照據點（二）", desc: "帶領長者進行下肢肌力強化與穩定度練習。" },
+    { title: "花蓮縣新城鄉社區長照據點（三）", desc: "長者們認真配合動作指導，氣氛溫馨熱絡。" },
+    { title: "花蓮縣新城鄉社區長照據點（四）", desc: "透過專業運動介入，有效提升長者日常活動能力。" },
+    { title: "花蓮縣新城鄉社區長照據點（五）", desc: "活動圓滿順利，展現健康老化與快樂運動的成果。" }
+  ];
+
+  let currentIndex = 0;
+  const total = imgs.length;
+
+  window.changeSlideSinchen = function(n) {
+    imgs[currentIndex].style.display = 'none';
+    imgs[currentIndex].classList.remove('active');
+    
+    currentIndex = (currentIndex + n + total) % total;
+    
+    imgs[currentIndex].style.display = 'block';
+    imgs[currentIndex].classList.add('active');
+    idxSpan.textContent = currentIndex + 1;
+    titleEl.textContent = slideData[currentIndex].title;
+    descEl.textContent = slideData[currentIndex].desc;
+  }
+
+  // 自動播放（每 3 秒切換一張）
+  setInterval(function() {
+    changeSlideSinchen(1);
+  }, 3000);
+})();
+</script>
   
   <div class="gallery-item" data-group="north">
     <div class="gallery-thumb">
