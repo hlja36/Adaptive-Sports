@@ -141,6 +141,66 @@
   }, 3000);
 })();
 </script>
+
+<div class="gallery-item" data-group="hualien" id="slideshow-peun">
+    <div class="gallery-thumb" style="position: relative; overflow: hidden;">
+      <!-- 3張輪播圖片 (請注意第一張為大寫 .JPG，後兩張為小寫 .jpg) -->
+      <img src="assets/images/gallery/114Peun1.JPG" alt="花蓮縣碧雲莊社區 1" class="slide-img active" onerror="this.style.display='none'" style="width:100%; display:block;">
+      <img src="assets/images/gallery/114Peun2.jpg" alt="花蓮縣碧雲莊社區 2" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/114Peun3.jpg" alt="花蓮縣碧雲莊社區 3" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      
+      <span class="slide-badge" style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.6); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.85rem;">🏙️ 花蓮縣花蓮市碧雲莊社區 (<span class="current-idx">1</span>/3)</span>
+      
+      <!-- 左右切換按鈕 -->
+      <button onclick="changeSlidePeun(-1)" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❮</button>
+      <button onclick="changeSlidePeun(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
+    </div>
+    <div class="gallery-caption">
+      <span class="badge badge-blue">114年花蓮縣花蓮市碧雲莊社區</span>
+      <h4 class="slide-title">花蓮縣花蓮市碧雲莊社區關懷據點（一）</h4>
+      <p class="slide-desc">指導員使用抗力球訓練下肢肌力, 提升體能預防跌倒。</p>
+    </div>
+</div>
+
+<!-- 碧雲莊社區輪播控制 Script -->
+<script>
+(function() {
+  const container = document.getElementById('slideshow-peun');
+  const imgs = container.querySelectorAll('.slide-img');
+  const idxSpan = container.querySelector('.current-idx');
+  const titleEl = container.querySelector('.slide-title');
+  const descEl = container.querySelector('.slide-desc');
+  
+  // 可在此自訂每張圖對應的標題與說明文字
+  const slideData = [
+    { title: "花蓮縣花蓮市碧雲莊社區關懷據點（一）", desc: "指導員使用抗力球訓練下肢肌力, 提升體能預防跌倒。" },
+    { title: "花蓮縣花蓮市碧雲莊社區關懷據點（二）", desc: "上肢肌力訓練, 提升生活功能。" },
+    { title: "花蓮縣花蓮市碧雲莊社區關懷據點（三）", desc: "指導員使用抗力球訓練下肢肌力訓練。" }
+  ];
+
+  let currentIndex = 0;
+  const total = imgs.length;
+
+  window.changeSlidePeun = function(n) {
+    imgs[currentIndex].style.display = 'none';
+    imgs[currentIndex].classList.remove('active');
+    
+    currentIndex = (currentIndex + n + total) % total;
+    
+    imgs[currentIndex].style.display = 'block';
+    imgs[currentIndex].classList.add('active');
+    idxSpan.textContent = currentIndex + 1;
+    titleEl.textContent = slideData[currentIndex].title;
+    descEl.textContent = slideData[currentIndex].desc;
+  }
+
+  // 自動播放（每 3 秒切換一張）
+  setInterval(function() {
+    changeSlidePeun(1);
+  }, 3000);
+})();
+</script>
+
   
 <div class="gallery-item" data-group="hualien" id="slideshow-yuli">
     <div class="gallery-thumb" style="position: relative; overflow: hidden;">
