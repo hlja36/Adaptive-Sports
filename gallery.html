@@ -61,7 +61,7 @@
       <span>📋 體型測量與五大體能前測</span>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-green">花蓮市國富社區</span>
+      <span class="badge badge-green">114年花蓮市國富社區</span>
       <h4>開課前測與安全評估</h4>
       <p>指導員一對一協助長者進行血壓量測、最大握力與開眼單足立評估。</p>
     </div>
@@ -83,7 +83,7 @@
       <button onclick="changeSlide(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-green">花蓮市國富社區</span>
+      <span class="badge badge-green">114年花蓮市國富社區</span>
       <h4 class="slide-title">方塊踏步與認知同步訓練（一）</h4>
       <p class="slide-desc">長者依循初級至高級步伐節奏移動，同步回答數字運算與詞語題目，笑聲不斷。</p>
     </div>
@@ -136,19 +136,78 @@
       <span>💪 下肢肌力與骨盆底肌強化</span>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-green">吉安鄉南昌／南華社區</span>
+      <span class="badge badge-green">113年吉安鄉南昌／南華社區</span>
       <h4>增力穩行與骨盆骶肌訓練</h4>
       <p>運用抗力球與彈力帶進行下肢及骨盆底肌協同訓練，並搭配居家 6 張紀錄卡自主練習。</p>
     </div>
   </div>
 
+<div class="gallery-item" data-group="hualien" id="slideshow-yuli">
+    <div class="gallery-thumb" style="position: relative; overflow: hidden;">
+      <!-- 3張輪播圖片 -->
+      <img src="assets/images/gallery/114yuli-1.jpg" alt="花蓮縣玉里社區活動花絮 1" class="slide-img active" onerror="this.style.display='none'" style="width:100%; display:block;">
+      <img src="assets/images/gallery/114yuli-2.jpg" alt="花蓮縣玉里社區活動花絮 2" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/114yuli-3.jpg" alt="花蓮縣玉里社區活動花絮 3" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      
+      <span class="slide-badge" style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.6); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.85rem;">🏙️ 花蓮縣玉里社區 (<span class="current-idx">1</span>/3)</span>
+      
+      <!-- 左右切換按鈕 -->
+      <button onclick="changeSlideYuli(-1)" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❮</button>
+      <button onclick="changeSlideYuli(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
+    </div>
+    <div class="gallery-caption">
+      <span class="badge badge-blue">114年花蓮縣玉里社區</span>
+      <h4 class="slide-title">花蓮縣玉里社區關懷據點（一）</h4>
+      <p class="slide-desc">指導員帶動長者身體活動, 提升體能預防跌倒。</p>
+    </div>
+</div>
+
+<!-- 玉里社區輪播控制 Script -->
+<script>
+(function() {
+  const container = document.getElementById('slideshow-yuli');
+  const imgs = container.querySelectorAll('.slide-img');
+  const idxSpan = container.querySelector('.current-idx');
+  const titleEl = container.querySelector('.slide-title');
+  const descEl = container.querySelector('.slide-desc');
+  
+  // 可在此自訂每張圖對應的標題與說明文字
+  const slideData = [
+    { title: "花蓮縣玉里社區關懷據點（一）", desc: "指導員使用抗力球訓練下肢肌力, 提升體能預防跌倒。" },
+    { title: "花蓮縣玉里社區關懷據點（二）", desc: "指導員使用抗力球訓練上肢肌力, 提升生活功能(一)。" },
+    { title: "花蓮縣玉里社區關懷據點（三）", desc: "指導員使用抗力球訓練上肢肌力, 提升生活功能(二)。" }
+  ];
+
+  let currentIndex = 0;
+  const total = imgs.length;
+
+  window.changeSlideYuli = function(n) {
+    imgs[currentIndex].style.display = 'none';
+    imgs[currentIndex].classList.remove('active');
+    
+    currentIndex = (currentIndex + n + total) % total;
+    
+    imgs[currentIndex].style.display = 'block';
+    imgs[currentIndex].classList.add('active');
+    idxSpan.textContent = currentIndex + 1;
+    titleEl.textContent = slideData[currentIndex].title;
+    descEl.textContent = slideData[currentIndex].desc;
+  }
+
+  // 自動播放（每 3 秒切換一張）
+  setInterval(function() {
+    changeSlideYuli(1);
+  }, 3000);
+})();
+</script>
+  
   <div class="gallery-item" data-group="hualien">
     <div class="gallery-thumb">
       <img src="assets/images/gallery/sanchong-sites.jpg" alt="花蓮縣新城鄉衛生局" onerror="this.style.display='none'">
       <span>🏙️ 花蓮縣新城鄉</span>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-blue">花蓮縣新城鄉</span>
+      <span class="badge badge-blue">115年花蓮縣新城鄉</span>
       <h4>花蓮縣新城鄉社區長照據點</h4>
       <p>陳聰毅教授指導長者體能訓練。</p>
     </div>
@@ -160,7 +219,7 @@
       <span>🤝 新北市板橋敏動齡健康關懷協會</span>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-blue">新北市板橋區</span>
+      <span class="badge badge-blue">115年新北市板橋區</span>
       <h4>都會區據點示範與新師資見習</h4>
       <p>黃森芳副教授帶領46名新訓學員分批觀摩實務帶課技巧與高齡者適性動作調整。</p>
     </div>
@@ -172,7 +231,7 @@
       <span>🎓 115年新師資培訓與術科考試</span>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-orange">雙和靜思堂 / 慈濟大學</span>
+      <span class="badge badge-orange">115年師資新訓_雙和靜思堂/慈濟大學</span>
       <h4>24小時專業培訓與術科實作考核</h4>
       <p>黃新作博士、黃森芳副教授與陳聰毅教授親自授課並進行一對一情境模擬術科評核。</p>
     </div>
@@ -184,7 +243,7 @@
       <span>🔄 115年既有師資年度回訓</span>
     </div>
     <div class="gallery-caption">
-      <span class="badge badge-blue">慈濟大學大喜館</span>
+      <span class="badge badge-blue">115年慈濟大學大喜館</span>
       <h4>既有師資年度回訓認證</h4>
       <p>115 年 9 月 12 日辦理 8 小時年度回訓，專業師資 6 名與指導員 14 名完成課程，持續維持方案服務品質。</p>
     </div>
