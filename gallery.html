@@ -337,19 +337,69 @@
 })();
 </script>
 
-  <div class="gallery-item" data-group="training">
-    <div class="gallery-thumb">
-      <img src="assets/images/gallery/refresher-2026.jpg" alt="115年既有師資回訓" onerror="this.style.display='none'">
-      <span>🔄 115年既有師資年度回訓</span>
+<div class="gallery-item" data-group="training" id="slideshow-retrian">
+    <div class="gallery-thumb" style="position: relative; overflow: hidden;">
+      <!-- 5張輪播圖片 -->
+      <img src="assets/images/gallery/115Retrian1.jpg" alt="115年既有師資年度回訓 1" class="slide-img active" onerror="this.style.display='none'" style="width:100%; display:block;">
+      <img src="assets/images/gallery/115Retrian2.jpg" alt="115年既有師資年度回訓 2" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Retrian3.jpg" alt="115年既有師資年度回訓 3" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Retrian4.jpg" alt="115年既有師資年度回訓 4" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      <img src="assets/images/gallery/115Retrian5.jpg" alt="115年既有師資年度回訓 5" class="slide-img" onerror="this.style.display='none'" style="width:100%; display:none;">
+      
+      <span class="slide-badge" style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.6); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.85rem;">🔄 115年既有師資年度回訓 (<span class="current-idx">1</span>/5)</span>
+      
+      <!-- 左右切換按鈕 -->
+      <button onclick="changeSlideRetrian(-1)" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❮</button>
+      <button onclick="changeSlideRetrian(1)" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; padding:4px 8px; cursor:pointer; border-radius:4px;">❯</button>
     </div>
     <div class="gallery-caption">
       <span class="badge badge-blue">115年慈濟大學大喜館</span>
-      <h4>既有師資年度回訓認證</h4>
-      <p>115 年 9 月 12 日辦理 8 小時年度回訓，專業師資 6 名與指導員 14 名完成課程，持續維持方案服務品質。</p>
+      <h4 class="slide-title">既有師資年度回訓認證（一）</h4>
+      <p class="slide-desc">115 年 9 月 12 日辦理 8 小時年度回訓，專業師資 6 名與指導員 14 名完成課程，持續維持方案服務品質。</p>
     </div>
-  </div>
 </div>
 
+<!-- 既有師資回訓輪播控制 Script -->
+<script>
+(function() {
+  const container = document.getElementById('slideshow-retrian');
+  const imgs = container.querySelectorAll('.slide-img');
+  const idxSpan = container.querySelector('.current-idx');
+  const titleEl = container.querySelector('.slide-title');
+  const descEl = container.querySelector('.slide-desc');
+  
+  // 可在此自訂每張圖對應的標題與說明文字
+  const slideData = [
+    { title: "既有師資年度回訓認證（一）", desc: "115 年 9 月 12 日辦理 8 小時年度回訓，專業師資 6 名與指導員 14 名完成課程，持續維持方案服務品質。" },
+    { title: "既有師資年度回訓認證（二）", desc: "深入探討最新運動介入技術與實務經驗交流。" },
+    { title: "既有師資年度回訓認證（三）", desc: "學員於大喜館參與術科複習與動作規範校正。" },
+    { title: "既有師資年度回訓認證（四）", desc: "透過年度回訓，確保第一線指導品質與安全防護。" },
+    { title: "既有師資年度回訓認證（五）", desc: "回訓圓滿落幕，全體師資合影留念，精進專業再出發。" }
+  ];
+
+  let currentIndex = 0;
+  const total = imgs.length;
+
+  window.changeSlideRetrian = function(n) {
+    imgs[currentIndex].style.display = 'none';
+    imgs[currentIndex].classList.remove('active');
+    
+    currentIndex = (currentIndex + n + total) % total;
+    
+    imgs[currentIndex].style.display = 'block';
+    imgs[currentIndex].classList.add('active');
+    idxSpan.textContent = currentIndex + 1;
+    titleEl.textContent = slideData[currentIndex].title;
+    descEl.textContent = slideData[currentIndex].desc;
+  }
+
+  // 自動播放（每 3 秒切換一張）
+  setInterval(function() {
+    changeSlideRetrian(1);
+  }, 3000);
+})();
+</script>
+  
   </main>
   <footer>
     <div class="footer-inner">
