@@ -137,27 +137,8 @@
           </div>
         </div>
 
-        <div style="margin-bottom:14px;">
-          <button type="button" class="btn btn-outline" style="padding:7px 14px;font-size:0.9rem;" onclick="loadStudentFromGAS()">🔍 從雲端載入該學員前測基準資料</button>
-          <button type="button" class="btn btn-outline" style="padding:7px 14px;font-size:0.9rem;margin-left:6px;" onclick="loadDemoOverlap()">✨ 載入示範前後測重疊效果</button>
-        </div>
-
         <hr style="border:0;border-top:1px solid #e2e8f0;margin:14px 0;">
-        <h4 style="color:var(--primary-dark);margin-bottom:10px;">一、體型與血壓心跳測量</h4>
-        <div class="form-grid">
-          <div class="form-group"><label>身高 (cm)</label><input type="number" step="0.1" id="height" oninput="calcBodyMetrics()"></div>
-          <div class="form-group"><label>體重 (kg)</label><input type="number" step="0.1" id="weight" oninput="calcBodyMetrics()"></div>
-          <div class="form-group"><label>BMI (自動計算)</label><input type="text" id="bmi" readonly placeholder="自動換算"></div>
-          <div class="form-group"><label>腰圍 (cm)</label><input type="number" step="0.1" id="waist" oninput="calcBodyMetrics()"></div>
-          <div class="form-group"><label>臀圍 (cm)</label><input type="number" step="0.1" id="hip" oninput="calcBodyMetrics()"></div>
-          <div class="form-group"><label>腰臀比 WHR (自動)</label><input type="text" id="whr" readonly placeholder="自動換算"></div>
-          <div class="form-group"><label>收縮壓 (mmHg)</label><input type="number" id="sbp"></div>
-          <div class="form-group"><label>舒張壓 (mmHg)</label><input type="number" id="dbp"></div>
-          <div class="form-group"><label>安靜心跳率 (次/分)</label><input type="number" id="hr"></div>
-        </div>
-
-        <hr style="border:0;border-top:1px solid #e2e8f0;margin:14px 0;">
-        <h4 style="color:var(--primary-dark);margin-bottom:10px;">二、五大核心體能檢測（即時連動右側重疊雷達圖）</h4>
+        <h4 style="color:var(--primary-dark);margin-bottom:10px;">五大核心體能檢測（即時連動右側重疊雷達圖）</h4>
         <div class="form-grid">
           <div class="form-group">
             <label>① 最大握力 (kg) * <small style="color:var(--text-muted)">上肢肌力</small></label>
