@@ -1,40 +1,131 @@
+
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>課程進度回報與學員滿意度調查 | CL-14-0028 長者適性運動</title>
+
+  <title>課程進度回報與學員滿意度調查 | CL-14-0028 長者適性運動-增力穩行尿防漏、健康老化快樂過</title>
+
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
+
+  <!-- 頂端資訊列 -->
+  <div class="top-bar">
+    <span>
+      衛生福利部預防及延緩失能照護服務方案｜
+      方案編號：<strong>CL-14-0028</strong>
+    </span>
+
+    <span>
+      指導單位：花蓮縣衛生局｜
+      研發單位：慈濟學校財團法人慈濟大學體育教學中心
+    </span>
+  </div>
+
+  <!-- 網站頁首 -->
   <header>
-    <div class="topbar">
-      <span>衛生福利部預防及延緩失能照護服務方案｜方案編號：CL-14-0028</span>
-      <span>指導單位：花蓮縣衛生局｜研發單位：慈濟學校財團法人慈濟大學體育教學中心</span>
-    </div>
-    <div class="header-main">
-      <div class="brand">
-        <span class="brand-mark">CL-14-0028</span>
-        <div><strong>長者適性運動－增力穩行尿防漏</strong><small>健康老化快樂過｜社區據點與師資管理平台</small></div>
-      </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰ 選單</button>
-      <nav>
+    <div class="nav-container">
+
+      <!-- 網站品牌與首頁連結 -->
+      <a href="index.html"
+         class="brand"
+         style="text-decoration:none;">
+
+        <span class="brand-badge">CL-14-0028</span>
+
+        <div class="brand-title">
+          <h1>長者適性運動－增力穩行尿防漏</h1>
+          <span>
+            健康老化快樂過｜社區推廣與師資管理平台
+          </span>
+        </div>
+      </a>
+
+      <!-- 手機版選單按鈕 -->
+      <button
+        class="menu-toggle"
+        type="button"
+        onclick="document.getElementById('mainNav').classList.toggle('open')">
+        ☰ 選單
+      </button>
+
+      <!-- 主導覽列 -->
+      <nav id="mainNav">
         <ul>
-          <li><a href="index.html">首頁與公告</a></li>
-          <li><a href="program-content.html">方案內容</a></li>
-          <li><a href="community-analysis.html">社關網方案分析</a></li>
-          <li><a href="instructors.html">師資管理</a></li>
-          <li><a href="teaching-materials.html">授課參考資料</a></li>
-          <li><a href="gallery.html">活動照片</a></li>
-          <li><a href="outcomes.html">方案成效</a></li>
-          <li><a href="data-upload.html">檢測問卷填報與雷達圖評估</a></li>
-          <li><a href="course-feedback.html" class="active" style="background:#7dd3fc;color:#0c4a6e;">課程進度回報與學員滿意度調查</a></li>
-          <li><a href="downloads.html">表單下載</a></li>
+
+          <li>
+            <a href="index.html" class="">
+              首頁與公告
+            </a>
+          </li>
+
+          <li>
+            <a href="program-content.html" class="">
+              方案內容
+            </a>
+          </li>
+
+          <li>
+            <a href="community-analysis.html" class="">
+              社關網方案分析
+            </a>
+          </li>
+
+          <li>
+            <a href="instructors.html" class="">
+              師資管理
+            </a>
+          </li>
+
+          <li>
+            <a href="teaching-materials.html" class="">
+              授課參考資料
+            </a>
+          </li>
+
+          <li>
+            <a href="gallery.html" class="">
+              活動照片
+            </a>
+          </li>
+
+          <li>
+            <a href="outcomes.html" class="">
+              方案成效
+            </a>
+          </li>
+
+          <li>
+            <a href="data-upload.html"
+               class=""
+               style="background:var(--secondary);color:#fff;">
+              檢測問卷填報與雷達圖評估
+            </a>
+          </li>
+
+          <li>
+            <a href="course-feedback.html"
+               class="active"
+               style="background:#7dd3fc;color:#0c4a6e;">
+              課程進度回報與學員滿意度調查
+            </a>
+          </li>
+
+          <li>
+            <a href="downloads.html" class="">
+              表單下載
+            </a>
+          </li>
+
         </ul>
       </nav>
+
     </div>
   </header>
-
+ 
   <main class="container">
     <div class="section-header">
       <div>
