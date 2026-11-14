@@ -207,12 +207,178 @@
   <div class="card">
     <h3>📋 一、體型檢測及長者健康問卷調查（CL-14-0028-1 至 3）</h3>
     <div class="grid-3">
-      <div class="kpi-card" style="margin-bottom:0;">
-        <span class="badge badge-green">CL-14-0028-1</span>
-        <h4 style="margin:8px 0;">體型測量及體能測驗-前後測紀錄表</h4>
-        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">Google Forms 官方備份填報表單（前後測體型、血壓與體適能紀錄）。</p>
-        <a href="https://forms.gle/y55XoDF8wTLTgoFXA" target="_blank" class="btn btn-primary">前往填寫表單 ↗</a>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CL-14-0028 體型測量及體能測驗</title>
+  <style>
+    :root { --green:#126b50; --blue:#0b75b5; --bg:#f4f8f6; --line:#d8e2df; --text:#18322a; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Arial,"Noto Sans TC",sans-serif; line-height:1.6; }
+    main { max-width:1100px; margin:28px auto; padding:0 16px 48px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; box-shadow:0 4px 18px #164e3a12; }
+    h1 { color:var(--green); margin:0 0 6px; font-size:1.65rem; }
+    h2 { color:var(--green); border-left:5px solid var(--green); padding-left:10px; margin:28px 0 14px; font-size:1.2rem; }
+    .intro { color:#52665e; margin-top:0; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    label { display:block; font-weight:700; margin-bottom:5px; }
+    label small { display:block; color:#687b74; font-weight:400; font-size:.82rem; }
+    input, select { width:100%; border:1px solid #b9cbc5; border-radius:8px; padding:10px 11px; font-size:1rem; background:#fff; }
+    input[readonly] { background:#edf5f2; }
+    .required { color:#b42318; }
+    button { width:100%; margin-top:24px; border:0; border-radius:9px; padding:13px 16px; color:#fff; background:var(--green); font-size:1.05rem; font-weight:700; cursor:pointer; }
+    button:disabled { opacity:.6; cursor:wait; }
+    #status { min-height:28px; margin:12px 0 0; text-align:center; font-weight:700; }
+    .note { background:#eef8ff; border:1px solid #b8def4; color:#24536d; padding:10px 12px; border-radius:8px; font-size:.9rem; }
+    @media (max-width:760px) { .grid { grid-template-columns:1fr; } .card { padding:17px; } }
+  </style>
+</head>
+<body>
+<main>
+  <section class="card">
+    <h1>CL-14-0028 長者適性方案</h1>
+    <p class="intro">體型測量及體能測驗－前、後測紀錄表</p>
+    <p class="note">本表單已連接 Google Apps Script Web App。必填欄位以 <span class="required">*</span> 標示。</p>
+
+    <form id="fitnessForm">
+      <h2>基本資料</h2>
+      <div class="grid">
+        <div><label>施測據點：<span class="required">*</span><small>縣市＋據點，例如：花蓮宜昌</small></label><input id="siteName" required></div>
+        <div><label>前、後測：<span class="required">*</span></label><select id="testStage" required><option value="">請選擇</option><option>前測</option><option>後測</option></select></div>
+        <div><label>施測者或據點 E-mail：<small>用於寄送回覆確認，可留白</small></label><input id="respondentEmail" type="email"></div>
+        <div><label>施測者：</label><input id="tester"></div>
+        <div><label>受試者姓名：<span class="required">*</span></label><input id="participantName" required></div>
+        <div><label>性別：<span class="required">*</span></label><select id="gender" required><option value="">請選擇</option><option>男</option><option>女</option></select></div>
+        <div><label>施測日期：<span class="required">*</span></label><input id="testDate" type="date" required></div>
+        <div><label>出生年（民國）：<span class="required">*</span><small>民國46年請填 46</small></label><input id="birthYearRoc" type="number" min="1" max="200" required></div>
+        <div><label>出生月：<span class="required">*</span></label><select id="birthMonth" required><option value="">請選擇</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
       </div>
+
+      <h2>體型測量</h2>
+      <div class="grid">
+        <div><label>身高（公分）：<span class="required">*</span></label><input id="heightCm" type="number" step="0.1" required></div>
+        <div><label>體重（公斤）：<span class="required">*</span></label><input id="weightKg" type="number" step="0.1" required></div>
+        <div><label>BMI：<small>依身高與體重自動計算</small></label><input id="bmi" readonly></div>
+        <div><label>腰圍（公分）：</label><input id="waistCm" type="number" step="0.1"></div>
+        <div><label>臀圍（公分）：</label><input id="hipCm" type="number" step="0.1"></div>
+        <div><label>腰圍／臀圍（WHR）：<small>依腰圍與臀圍自動計算</small></label><input id="whr" readonly></div>
+      </div>
+
+      <h2>血壓測量</h2>
+      <div class="grid">
+        <div><label>收縮壓1（mmHg）：</label><input id="sbp1" type="number"></div>
+        <div><label>舒張壓1（mmHg）：</label><input id="dbp1" type="number"></div>
+        <div><label>心跳率1（次／分）：</label><input id="hr1" type="number"></div>
+      </div>
+      
+      <div class="form-grid" style="margin-top: 10px;">
+        <div><label>收縮壓2（mmHg）：</label><input id="sbp2" type="number"></div>
+        <div><label>舒張壓2（mmHg）：</label><input id="dbp2" type="number"></div>
+        <div><label>心跳率2（次／分）：</label><input id="hr2" type="number"></div>
+      </div>
+
+      <h2>體能測驗</h2>
+      <div class="grid">
+        <div><label>慣用手第1次（kg）：<span class="required">*</span></label><input id="gripFirst" type="number" step="0.1" required></div>
+        <div><label>慣用手第2次（kg）：</label><input id="gripSecond" type="number" step="0.1"></div>
+      </div>
+      
+      <div class="form-grid" style="margin-top: 10px;">
+        <div><label>開眼單足立1（秒）：<span class="required">*</span></label><input id="oneLegFirst" type="number" step="0.1" max="60" required></div>
+        <div><label>開眼單足立2（秒）：</label><input id="oneLegSecond" type="number" step="0.1" max="60"></div>
+      </div>
+      
+      <div class="form-grid" style="margin-top: 10px;">        
+        <div><label>5 公尺步行1（秒）：<span class="required">*</span></label><input id="walk5mFirst" type="number" step="0.01" required></div>
+        <div><label>5 公尺步行2（秒）：</label><input id="walk5mSecond" type="number" step="0.01"></div>
+      </div>
+      
+      <div class="form-grid" style="margin-top: 10px;">
+        <div><label>30 秒鐘坐起運動（次）：<span class="required">*</span></label><input id="chairStand30s" type="number" required></div>
+      </div>
+      
+      <div class="form-grid" style="margin-top: 10px;">
+        <div><label>30 秒坐姿內收肌力第1次（次）：<span class="required">*</span></label><input id="adductorFirst" type="number" required></div>
+        <div><label>30 秒坐姿內收肌力第2次（次）：</label><input id="adductorSecond" type="number"></div>
+      </div>
+
+      <button id="submitButton" type="submit">送出資料至 Google Sheets</button>
+      <p id="status" role="status"></p>
+    </form>
+  </section>
+</main>
+<script>
+  // 使用者提供的 Apps Script「網頁應用程式」/exec 網址。
+  const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyo1txEFCYSpk4a1prHAyjjIMP4NnyCvAwGgBCG0Zd1EpbddRipINxJYOtaR_YI5-rl/exec';
+  const $ = (id) => document.getElementById(id);
+  const value = (id) => $(id).value.trim();
+
+  function updateDerived() {
+    const h = Number(value('heightCm'));
+    const w = Number(value('weightKg'));
+    const waist = Number(value('waistCm'));
+    const hip = Number(value('hipCm'));
+    $('bmi').value = h > 0 && w > 0 ? (w / Math.pow(h / 100, 2)).toFixed(2) : '';
+    $('whr').value = waist > 0 && hip > 0 ? (waist / hip).toFixed(2) : '';
+  }
+
+  function makePayload() {
+    return {
+      action: 'officialForm',
+      formId: 'CL-14-0028-1',
+      siteName: value('siteName'), testStage: value('testStage'),
+      respondentEmail: value('respondentEmail'), tester: value('tester'),
+      participantName: value('participantName'), gender: value('gender'),
+      testDate: value('testDate'), birthYearRoc: value('birthYearRoc'), birthMonth: value('birthMonth'),
+      body: { heightCm:value('heightCm'), weightKg:value('weightKg'), bmi:value('bmi'), waistCm:value('waistCm'), hipCm:value('hipCm'), whr:value('whr') },
+      bloodPressure: {
+        first: { systolic:value('sbp1'), diastolic:value('dbp1'), heartRate:value('hr1') },
+        second: { systolic:value('sbp2'), diastolic:value('dbp2'), heartRate:value('hr2') }
+      },
+      fitness: {
+        gripFirst:value('gripFirst'), gripSecond:value('gripSecond'),
+        oneLegFirst:value('oneLegFirst'), oneLegSecond:value('oneLegSecond'),
+        walk5mFirst:value('walk5mFirst'), walk5mSecond:value('walk5mSecond'),
+        chairStand30s:value('chairStand30s'), adductorFirst:value('adductorFirst'), adductorSecond:value('adductorSecond')
+      }
+    };
+  }
+
+  ['heightCm','weightKg','waistCm','hipCm'].forEach(id => $(id).addEventListener('input', updateDerived));
+  $('fitnessForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!event.currentTarget.checkValidity()) { event.currentTarget.reportValidity(); return; }
+    const status = $('status');
+    const button = $('submitButton');
+    if (!GAS_WEB_APP_URL) {
+      status.style.color = '#b45309';
+      status.textContent = '請先將 GAS_WEB_APP_URL 改成 Apps Script 的 /exec 網址。';
+      return;
+    }
+    button.disabled = true;
+    status.style.color = '#0b75b5';
+    status.textContent = '正在送出資料…';
+    try {
+      await fetch(GAS_WEB_APP_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(makePayload())
+      });
+      status.style.color = '#16803c';
+      status.textContent = '已送出；請至試算表的「CL-14-0028-1官方表單」工作表確認新資料列。';
+      event.currentTarget.reset();
+      updateDerived();
+    } catch (error) {
+      status.style.color = '#b42318';
+      status.textContent = '送出失敗，請確認 Web App 權限、網址與網路連線。';
+    } finally { button.disabled = false; }
+  });
+</script>
+</body>
+</html>
+
       <div class="kpi-card accent" style="margin-bottom:0;">
         <span class="badge badge-orange">CL-14-0028-2</span>
         <h4 style="margin:8px 0;">預防改善尿失禁問卷調查</h4>
