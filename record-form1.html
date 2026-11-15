@@ -152,10 +152,10 @@
       event.currentTarget.reset();
       updateDerived();
     } catch (error) {
-      status.style.color = '#b42318';
-      status.textContent = '資料送出完成。';
+      // GAS 可能已完成寫入，但瀏覽器無法讀取跨來源回應；先以試算表結果為準。
+      status.style.color = '#b45309';
+      status.textContent = '⚠️ 瀏覽器未能讀取 GAS 回應；資料可能已寫入，請先至「CL-14-0028-1官方表單」確認，確認無新列後再檢查 Web App 權限與網址。';
     } finally { button.disabled = false; }
-  });
-</script>
+  });</script>
 </body>
 </html>
