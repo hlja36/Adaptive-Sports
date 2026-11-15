@@ -368,3 +368,57 @@ footer a { color: #a7f3d0; }
   nav.open { display: block; }
   nav ul { flex-direction: column; }
 }
+/* =========================================
+   單獨列印指定區塊專用樣式 (A4 尺寸單頁)
+   ========================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 2cm 1.5cm;
+  }
+
+  /* 1. 隱藏網頁上所有的元素 */
+  body * {
+    visibility: hidden;
+  }
+
+  /* 2. 【修正空白頁關鍵】：強制限制網頁總高度，裁切掉其他隱形元素佔用的多餘空間 */
+  html, body {
+    height: 100vh !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 3. 唯獨顯示雷達圖與表格區塊 */
+  #radar-print-section, #radar-print-section * {
+    visibility: visible;
+  }
+
+  /* 4. 將指定區塊絕對定位到紙張的最左上角 */
+  #radar-print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* 5. 確保表格與標題的背景底色能正常被印出 */
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: white;
+  }
+
+  /* 6. 【徹底隱藏列印按鈕】：解決預覽圖中按鈕仍顯示的問題 */
+  .no-print, .no-print * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+  }
+}
