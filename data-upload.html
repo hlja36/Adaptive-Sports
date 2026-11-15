@@ -241,6 +241,80 @@
   
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/js/gas-radar.js"></script>
+<!-- 自動加總表格分數的 Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const targetNode = document.getElementById('radarSummaryBody');
+  if (!targetNode) return;
 
+  // 執行加總運算的函數
+  function updateTotals() {
+    let preTotal = 0;
+    let postTotal = 0;
+    let preHasData = false;
+    let postHasData = false;
+
+    // 取得表格內的所有資料列
+    const rows = targetNode.querySelectorAll('tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      if (cells.length >= 4) {
+        // 解析前測分數：抓取括號內的數字，例如 "(3 分)" -> 3
+        const preText = cells[1].textContent;
+        const preMatch = preText.match(/\((\d+)\s*分\)/);
+        if (preMatch) {
+          preTotal += parseInt(preMatch[1]);
+          preHasData = true;
+        }
+
+        // 解析後測分數
+        const postText = cells[2].textContent;
+        const postMatch = postText.match(/\((\d+)\s*分\)/);
+        if (postMatch) {
+          postTotal += parseInt(postMatch[1]);
+          postHasData = true;
+        }
+      }
+    });
+
+    // 1. 寫入前測總分
+    const preEl = document.getElementById('preTestTotalScore');
+    if (preEl) preEl.innerHTML = preHasData ? `<strong>${preTotal} 分</strong>` : '-- 分';
+
+    // 2. 寫入後測總分
+    const postEl = document.getElementById('postTestTotalScore');
+    if (postEl) postEl.innerHTML = postHasData ? `<strong>${postTotal} 分</strong>` : '-- 分';
+
+    // 3. 寫入總分變化與顏色樣式 (綠色▲ / 紅色▼)
+    const diffEl = document.getElementById('totalScoreDiff');
+    if (diffEl) {
+      if (preHasData && postHasData) {
+        const diff = postTotal - preTotal;
+        if (diff > 0) {
+          diffEl.innerHTML = `<span style="color: #28a745; font-weight: bold;">▲ +${diff} 級分</span>`;
+        } else if (diff < 0) {
+          diffEl.innerHTML = `<span style="color: #dc3545; font-weight: bold;">▼ ${diff} 級分</span>`;
+        } else {
+          diffEl.innerHTML = `<span style="color: #6c757d; font-weight: bold;">持平</span>`;
+        }
+      } else {
+        diffEl.innerHTML = '--';
+      }
+    }
+  }
+
+  // 建立觀察器 (MutationObserver)：只要表格內容有任何變動，就立刻重新計算
+  const observer = new MutationObserver(function(mutations) {
+    updateTotals();
+  });
+  
+  // 啟動觀察器，監聽 tbody 裡面的文字與結構變化
+  observer.observe(targetNode, { childList: true, subtree: true, characterData: true });
+  
+  // 網頁剛載入時，先手動執行第一次加總
+  updateTotals();
+});
+</script>
+  
 </body>
 </html>
