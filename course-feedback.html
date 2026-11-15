@@ -60,27 +60,43 @@
           <span class="badge badge-green">專業師資 / 指導員專用</span>
           <h4 style="margin:8px 0;">CL-14-0028-4 授課內容及進度回報表</h4>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">每週課後由指導員登錄授課進度與長輩活動觀察紀錄。</p>
-          <a href="https://forms.gle/R7DxnrYriqL2Qaf59" target="_blank" rel="noopener noreferrer" class="btn btn-outline">開啟進度回報表 ↗</a>
+          <a href="javascript:void(0)" onclick="loadFeedbackForm('https://forms.gle/R7DxnrYriqL2Qaf59', 'CL-14-0028-4 授課內容及進度回報表')" class="btn">開啟進度回報表 ⬇</a>
         </div>
         <div class="kpi-card" style="margin-bottom:0;">
           <span class="badge badge-green">專業師資 / 指導員專用</span>
           <h4 style="margin:8px 0;">CL-14-0028-5 師資指導員授課回饋問卷</h4>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">師資針對課程設計、輔具運用與據點合作之教學回饋。</p>
-          <a href="https://forms.gle/qNui6LUs4rwxqLxt9" target="_blank" rel="noopener noreferrer" class="btn btn-outline">開啟師資回饋單 ↗</a>
+          <a href="javascript:void(0)" onclick="loadFeedbackForm('https://forms.gle/qNui6LUs4rwxqLxt9', 'CL-14-0028-5 師資指導員授課回饋問卷')" class="btn">開啟師資回饋單 ⬇</a>
         </div>
         <div class="kpi-card accent" style="margin-bottom:0;">
           <span class="badge badge-orange">社區長者學員專用</span>
           <h4 style="margin:8px 0;">CL-14-0028-6 長者適性運動回饋問卷（學員版）</h4>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">蒐集參與長者對身體機能改善、防漏尿及居家練習之主觀感受。</p>
-          <a href="https://forms.gle/MhG1M6qcmLvpYHio9" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">開啟學員回饋單 ↗</a>
+          <a href="javascript:void(0)" onclick="loadFeedbackForm('https://forms.gle/MhG1M6qcmLvpYHio9', 'CL-14-0028-6 長者適性運動回饋問卷（學員版）')" class="btn">開啟學員回饋單 ⬇</a>
         </div>
         <div class="kpi-card accent" style="margin-bottom:0;">
           <span class="badge badge-orange">社區長者學員專用</span>
           <h4 style="margin:8px 0;">CL-14-0028-7 活動滿意度調查問卷</h4>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">第 12 週結業式時填寫之課程主題、講師表達與整體滿意度評估。</p>
-          <a href="https://forms.gle/VdZw7YM87pXqEZXr7" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">開啟滿意度問卷 ↗</a>
+          <a href="javascript:void(0)" onclick="loadFeedbackForm('https://forms.gle/VdZw7YM87pXqEZXr7', 'CL-14-0028-7 活動滿意度調查問卷')" class="btn">開啟滿意度問卷 ⬇</a>
         </div>
       </div>
+     <!-- 回饋問卷專用的內嵌大區塊 (預設隱藏) -->
+     <div id="feedback-embed-container" style="display: none; margin-top: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;">
+    
+    <!-- 區塊頂部：標題與關閉按鈕 -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #e67e22; padding-bottom: 10px;">
+         <h4 id="feedback-embed-title" style="margin: 0; color: #d35400; font-weight: bold;">正在載入問卷...</h4>
+         <button onclick="closeFeedbackForm()" style="background: #dc3545; color: white; border: none; padding: 6px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            ✖ 關閉表單
+         </button>
+      </div>
+
+      <!-- 實際載入外部網頁的 iframe -->
+      <iframe id="feedback-iframe" src="" width="100%" height="850px" frameborder="0" style="border: none; border-radius: 8px;">
+        載入中...如果無法顯示，請確認您的瀏覽器支援 iframe。
+      </iframe>
+     </div>
     </div>
   </main>
 
@@ -106,5 +122,35 @@
     </div>
   </footer>
   <script src="assets/js/main.js"></script>
+<!-- 控制回饋單內嵌與滾動的 Script -->
+<script>
+function loadFeedbackForm(url, title) {
+    const container = document.getElementById('feedback-embed-container');
+    const iframe = document.getElementById('feedback-iframe');
+    const titleEl = document.getElementById('feedback-embed-title');
+
+    // 更新標題與 iframe 網址
+    titleEl.textContent = title;
+    iframe.src = url;
+
+    // 顯示內嵌區塊
+    container.style.display = 'block';
+
+    // 畫面平滑往下滾動到表單區塊的位置
+    setTimeout(function() {
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+}
+
+function closeFeedbackForm() {
+    const container = document.getElementById('feedback-embed-container');
+    const iframe = document.getElementById('feedback-iframe');
+    
+    // 隱藏區塊並清空網址
+    container.style.display = 'none';
+    iframe.src = ''; 
+}
+</script>
+    
 </body>
 </html>
