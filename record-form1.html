@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>體型測量及體能測驗-前後測紀錄表</title>
+  <style>
+    body {
+      background-color: #f0ebf8; 
+      font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      margin: 0; padding: 20px; color: #202124;
+    }
+    .form-container {
+      background-color: white; max-width: 640px; margin: 0 auto;
+      border-radius: 8px; border: 1px solid #dadce0; border-top: 10px solid #673ab7; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 30px 35px;
+    }
+    h1 { font-size: 24px; margin-top: 0; margin-bottom: 12px; line-height: 1.35; }
+    .section-title {
+      background-color: #673ab7; color: white; padding: 10px 15px;
+      border-radius: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 18px; font-weight: bold;
+    }
+    .subsection-title {
+      font-size: 16px; font-weight: bold; color: #673ab7;
+      margin-top: 25px; margin-bottom: 15px; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px;
+    }
+    .question-block {
+      margin-bottom: 30px; background: #fff; padding: 15px;
+      border: 1px solid #dadce0; border-radius: 8px;
+    }
+    label.question-title { font-size: 16px; font-weight: 500; display: block; margin-bottom: 5px; }
+    .req { color: #d93025; }
+    .desc { font-size: 13px; color: #5f6368; margin-bottom: 15px; display: block; }
+    
+    input[type="text"], input[type="number"], input[type="date"], select {
+      width: 100%; border: none; border-bottom: 1px solid #d9d9d9;
+      padding: 8px 0; font-size: 15px; outline: none; transition: 0.3s;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus { border-bottom: 2px solid #673ab7; }
+    select { border: 1px solid #d9d9d9; border-radius: 4px; padding: 8px; width: 100%; }
+    
+    .radio-group label { display: block; margin-bottom: 12px; font-size: 14px; cursor: pointer; display: flex; align-items: center; }
+    .radio-group input { margin-right: 10px; cursor: pointer; transform: scale(1.2); }
+    
+    .btn-submit {
+      background-color: #673ab7; color: white; border: none; padding: 12px 24px;
+      font-size: 16px; font-weight: 500; border-radius: 4px; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 20px;
+    }
+    .btn-submit:hover { background-color: #5e35b1; }
+    .btn-submit:disabled { background-color: #9e9e9e; cursor: not-allowed; }
+    #message { margin-top: 15px; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h1>CL-14-0028長者適性方案-體型測量及體能測驗-前、後測記錄表</h1>
+  <p style="color: #d93025; font-size: 14px; margin-bottom: 30px;">*表示必填問題</p>
+  
+  <form id="myForm" onsubmit="handleFormSubmit(event)">
+    <div class="question-block">
+      <label class="question-title">1。施測據點:</label>
+      <span class="desc">縣市+據點;例如:花蓮宜昌</span>
+      <input type="text" name="q1" placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">2。前、後測 <span class="req">*</span></label>
+      <span class="desc">單選。</span>
+      <div class="radio-group">
+        <label><input type="radio" name="q2" value="前測" required> 前測</label>
+        <label><input type="radio" name="q2" value="後測"> 後測</label>
+      </div>
+    </div>
+    <div class="question-block">
+      <label class="question-title">3。施測者或據點E-mail:</label>
+      <span class="desc">E-mail 為寄送表單回覆資料進行確認之用。</span>
+      <input type="text" name="q3" placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">4。施測者:</label>
+      <input type="text" name="q4" placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">5. 受試者姓名: <span class="req">*</span></label>
+      <input type="text" name="q5" required placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">6。性別: <span class="req">*</span></label>
+      <span class="desc">單選。</span>
+      <div class="radio-group">
+        <label><input type="radio" name="q6" value="男" required> 男</label>
+        <label><input type="radio" name="q6" value="女"> 女</label>
+      </div>
+    </div>
+    <div class="question-block">
+      <label class="question-title">7。施測日期: <span class="req">*</span></label>
+      <span class="desc">例如:2019年1月7日</span>
+      <input type="date" name="q7" required>
+    </div>
+    <div class="question-block">
+      <label class="question-title">8。 出生年: <span class="req">*</span></label>
+      <span class="desc">民國46年,請填入46</span>
+      <input type="number" name="q8" required placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">9。 出生月: <span class="req">*</span></label>
+      <span class="desc">單選。</span>
+      <select name="q9" required>
+        <option value="" disabled selected>請選擇</option>
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+        <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+        <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+      </select>
+    </div>
+
+    <!-- 體型測量 -->
+    <div class="section-title">體型測量</div>
+    <div class="question-block">
+      <label class="question-title">10。身高(公分): <span class="req">*</span></label>
+      <input type="number" step="any" name="q10" required placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">11。體重(公斤): <span class="req">*</span></label>
+      <input type="number" step="any" name="q11" required placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">12。BMI:</label>
+      <span class="desc">體重(公斤)÷身高(公尺)÷身高(公尺)(只填數字)例如:160公分,60公斤。BMI=60÷1.6-1.6=23.44</span>
+      <input type="number" step="any" name="q12" placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">13。腰圍(公分):</label>
+      <input type="number" step="any" name="q13" placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">14。 臀圍(公分):</label>
+      <input type="number" step="any" name="q14" placeholder="您的回答">
+    </div>
+    <div class="question-block">
+      <label class="question-title">15。 腰圍/臀圍(WHR):</label>
+      <input type="number" step="any" name="q15" placeholder="您的回答">
+    </div>
+
+    <!-- 血壓測量 -->
+    <div class="section-title">血壓測量</div>
+    <div class="subsection-title">血壓1</div>
+    <div class="question-block"><label class="question-title">16。 收縮壓1 (mmHg):</label><input type="number" step="any" name="q16" placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">17。 舒張壓1 (mmHg):</label><input type="number" step="any" name="q17" placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">18。 心跳率1:</label><span class="desc">(次/分,只填數字即可)</span><input type="number" step="any" name="q18" placeholder="您的回答"></div>
+    <div class="subsection-title">血壓2:</div>
+    <div class="question-block"><label class="question-title">19。 收縮壓2 (mmHg):</label><input type="number" step="any" name="q19" placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">20。 舒張壓2 (mmHg):</label><input type="number" step="any" name="q20" placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">21。 心跳率2:</label><span class="desc">(次/分,只填數字即可)</span><input type="number" step="any" name="q21" placeholder="您的回答"></div>
+
+    <!-- 體能測驗 -->
+    <div class="section-title">體能測驗</div>
+    <div class="subsection-title">一、健康達人21評估檢測項目<br>1. 最大握力</div>
+    <div class="question-block"><label class="question-title">22。慣用手第1次: <span class="req">*</span></label><input type="number" step="any" name="q22" required placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">23。慣用手第2次:</label><input type="number" step="any" name="q23" placeholder="您的回答"></div>
+    <div class="subsection-title">2. 靜態平衡能力</div>
+    <div class="question-block"><label class="question-title">24。開眼單足立1(秒): <span class="req">*</span></label><input type="number" step="any" name="q24" required placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">25。開眼單足立2(秒):</label><input type="number" step="any" name="q25" placeholder="您的回答"></div>
+    <div class="subsection-title">3. 步行能力</div>
+    <div class="question-block"><label class="question-title">26。一般步行速度走完5M所需時間1 : <span class="req">*</span></label><input type="number" step="any" name="q26" required placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">27。一般步行速度走完5M所需時間2 :</label><input type="number" step="any" name="q27" placeholder="您的回答"></div>
+    <div class="subsection-title">二、功能性體適能檢測項目</div>
+    <div class="question-block"><label class="question-title">28。 1.30秒鐘坐起運動(次): <span class="req">*</span></label><input type="number" step="any" name="q28" required placeholder="您的回答"></div>
+    <div class="subsection-title">三、骨盆骶肌</div>
+    <div class="question-block"><label class="question-title">29。 1.第1次30秒坐姿內收肌力(次) <span class="req">*</span></label><input type="number" step="any" name="q29" required placeholder="您的回答"></div>
+    <div class="question-block"><label class="question-title">30。 2. 第2次30秒坐姿內收肌力(次)</label><input type="number" step="any" name="q30" placeholder="您的回答"></div>
+
+    <button type="submit" class="btn-submit">提交資料</button>
+    <div id="message"></div>
+  </form>
+</div>
+
+<script>
+  // 🌟 重要：請將下方的網址替換為您在第一步 GAS 中部署後取得的 Web App 網址 🌟
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbwLQFehZDLt-2Ce8OIFmzFBGcUNDrNgpq7N46HB8lvIH6RDzEsptvpCS1q-j_iKyLwv/exec";
+
+  function handleFormSubmit(event) {
+    event.preventDefault(); 
+    const form = document.getElementById('myForm');
+    const messageDiv = document.getElementById('message');
+    const submitBtn = form.querySelector('.btn-submit');
+    
+    submitBtn.disabled = true;
+    submitBtn.innerText = '資料傳送中，請稍候...';
+    messageDiv.innerText = '';
+    
+    const formData = new FormData(form);
+
+    // 透過 JavaScript Fetch API 將資料送往 Google Apps Script
+    fetch(GAS_URL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === 'success') {
+        messageDiv.innerText = '✅ 表單提交成功！您的資料已寫入試算表。';
+        messageDiv.style.color = "#2e7d32";
+        form.reset(); 
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // 送出後滾回最上方
+      } else {
+        throw new Error(data.message);
+      }
+    })
+    .catch(error => {
+      // 處理跨域或網路錯誤 (如果 GAS 有成功執行但回傳遭阻擋，仍提示使用者)
+      messageDiv.innerText = "資料已嘗試送出。若試算表未更新，請檢查您的網路與 GAS 部署權限。";
+      messageDiv.style.color = "#dc3545";
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerText = '提交資料';
+    });
+  }
+</script>
+
+</body>
+</html>
