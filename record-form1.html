@@ -36,14 +36,14 @@
     <form id="fitnessForm">
       <h2>基本資料</h2>
       <div class="grid">
-        <div><label>施測據點：<span class="required">*</span><small>縣市＋據點，例如：花蓮宜昌</small></label><input id="siteName" required></div>
+        <div><label style="display: flex; align-items: baseline;">施測據點：<span class="required">*</span><small style="margin-left: 8px;">縣市＋據點，例如：花蓮宜昌</small></label><input id="siteName" required></div>
         <div><label>前、後測：<span class="required">*</span></label><select id="testStage" required><option value="">請選擇</option><option>前測</option><option>後測</option></select></div>
         <div><label style="display: flex; align-items: baseline;">施測者或據點 E-mail：<small style="margin-left: 8px;">用於寄送回覆確認，可留白</small></label><input id="respondentEmail" type="email"></div>
         <div><label>施測者：</label><input id="tester"></div>
         <div><label>受試者姓名：<span class="required">*</span></label><input id="participantName" required></div>
         <div><label>性別：<span class="required">*</span></label><select id="gender" required><option value="">請選擇</option><option>男</option><option>女</option></select></div>
         <div><label>施測日期：<span class="required">*</span></label><input id="testDate" type="date" required></div>
-        <div><label>出生年（民國）：<span class="required">*</span><small>民國46年請填 46</small></label><input id="birthYearRoc" type="number" min="1" max="200" required></div>
+        <div><label style="display: flex; align-items: baseline;">出生年（民國）：<span class="required">*</span><small style="margin-left: 8px;">民國46年請填 46</small></label><input id="birthYearRoc" type="number" min="1" max="200" required></div>
         <div><label>出生月：<span class="required">*</span></label><select id="birthMonth" required><option value="">請選擇</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
       </div>
 
@@ -51,8 +51,8 @@
       <div class="grid">
         <div><label>身高（公分）：<span class="required">*</span></label><input id="heightCm" type="number" step="0.1" required></div>
         <div><label>體重（公斤）：<span class="required">*</span></label><input id="weightKg" type="number" step="0.1" required></div>
-        <div><label>BMI：<small>依身高與體重自動計算</small></label><input id="bmi" readonly></div>
-
+        <div><label style="display: flex; align-items: baseline;">BMI：<small style="margin-left: 8px;">依身高與體重自動計算</small></label><input id="bmi" readonly></div>
+        
         <div style="grid-column: 1;"><label>腰圍（公分）：</label><input id="waistCm" type="number" step="0.1"></div>
         <div><label>臀圍（公分）：</label><input id="hipCm" type="number" step="0.1"></div>
         <div><label>腰圍／臀圍（WHR）：<small>依腰圍與臀圍自動計算</small></label><input id="whr" readonly></div>
@@ -66,7 +66,7 @@
         
         <div style="grid-column: 1;"><label>收縮壓2（mmHg）：</label><input id="sbp1" type="number"></div>
         <div><label>舒張壓2（mmHg）：</label><input id="dbp1" type="number"></div>
-        <div><label>心跳率2（次／分）：</label><input id="hr1" type="number"></div>
+        <div><label style="display: flex; align-items: baseline;">腰圍／臀圍（WHR）：<small style="margin-left: 8px;">依腰圍與臀圍自動計算</small></label><input id="whr" readonly></div>
       </div>
 
       <h2>體能測驗</h2>
