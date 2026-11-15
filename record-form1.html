@@ -53,7 +53,7 @@
         <div><label>體重（公斤）：<span class="required">*</span></label><input id="weightKg" type="number" step="0.1" required></div>
         <div><label>BMI：<small>依身高與體重自動計算</small></label><input id="bmi" readonly></div>
 
-        <div><label>腰圍（公分）：</label><input id="waistCm" type="number" step="0.1"></div>
+        <<div style="grid-column: 1;">><label>腰圍（公分）：</label><input id="waistCm" type="number" step="0.1"></div>
         <div><label>臀圍（公分）：</label><input id="hipCm" type="number" step="0.1"></div>
         <div><label>腰圍／臀圍（WHR）：<small>依腰圍與臀圍自動計算</small></label><input id="whr" readonly></div>
      </div>
@@ -64,7 +64,7 @@
         <div><label>舒張壓1（mmHg）：</label><input id="dbp1" type="number"></div>
         <div><label>心跳率1（次／分）：</label><input id="hr1" type="number"></div>
         
-        <div><label>收縮壓2（mmHg）：</label><input id="sbp1" type="number"></div>
+        <<div style="grid-column: 1;">><label>收縮壓2（mmHg）：</label><input id="sbp1" type="number"></div>
         <div><label>舒張壓2（mmHg）：</label><input id="dbp1" type="number"></div>
         <div><label>心跳率2（次／分）：</label><input id="hr1" type="number"></div>
       </div>
@@ -74,15 +74,15 @@
         <div><label>慣用手第1次（kg）：<span class="required">*</span></label><input id="gripFirst" type="number" step="0.1" required></div>
         <div><label>慣用手第2次（kg）：</label><input id="gripSecond" type="number" step="0.1"></div>
         
-        <div><label>開眼單足立1（秒）：<span class="required">*</span></label><input id="oneLegFirst" type="number" step="0.1" max="60" required></div>
+        <<div style="grid-column: 1;">><label>開眼單足立1（秒）：<span class="required">*</span></label><input id="oneLegFirst" type="number" step="0.1" max="60" required></div>
         <div><label>開眼單足立2（秒）：</label><input id="oneLegSecond" type="number" step="0.1" max="60"></div>
         
-        <div><label>5 公尺步行1（秒）：<span class="required">*</span></label><input id="walk5mFirst" type="number" step="0.01" required></div>
+        <<div style="grid-column: 1;">><label>5 公尺步行1（秒）：<span class="required">*</span></label><input id="walk5mFirst" type="number" step="0.01" required></div>
         <div><label>5 公尺步行2（秒）：</label><input id="walk5mSecond" type="number" step="0.01"></div>
         
-        <div><label>30 秒鐘坐起運動（次）：<span class="required">*</span></label><input id="chairStand30s" type="number" required></div>
-        <div><label>30 秒坐姿內收肌力第1次（次）：<span class="required">*</span></label><input id="adductorFirst" type="number" required></div>
+        <<div style="grid-column: 1;">><label>30 秒鐘坐起運動（次）：<span class="required">*</span></label><input id="chairStand30s" type="number" required></div>
         
+        <<div style="grid-column: 1;">><label>30 秒坐姿內收肌力第1次（次）：<span class="required">*</span></label><input id="adductorFirst" type="number" required></div>
         <div><label>30 秒坐姿內收肌力第2次（次）：</label><input id="adductorSecond" type="number"></div>
       </div>
       <button id="submitButton" type="submit">送出資料至 Google Sheets</button>
