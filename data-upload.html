@@ -65,47 +65,12 @@
       <form id="fitnessGasForm" onsubmit="submitToGAS(event)">
         <div class="form-grid">
           <div class="form-group">
-            <label>所屬特約據點名稱 *</label>
-            <select id="siteName" required>
-              <option value="">-- 請選擇施測據點 --</option>
-              <optgroup label="花蓮縣">
-                <option value="花蓮縣花蓮市國富社區發展協會">花蓮市國富社區發展協會</option>
-                <option value="慈濟慈善事業基金會-花蓮市民孝里">慈濟基金會-花蓮市民孝里</option>
-                <option value="慈濟慈善事業基金會-花蓮市國慶里">慈濟基金會-花蓮市國慶里</option>
-                <option value="花蓮縣愛在球崙發展協會">花蓮縣愛在球崙發展協會</option>
-                <option value="社團法人花蓮縣博愛全人發展協會">花蓮縣博愛全人發展協會</option>
-                <option value="花蓮縣新城鄉樹林腳社區發展協會">新城鄉樹林腳社區發展協會</option>
-                <option value="花蓮縣新城鄉衛生所-醫事C">花蓮縣新城鄉衛生所-醫事C</option>
-                <option value="財團法人基督教芥菜種會(新城)">基督教芥菜種會（新城鄉）</option>
-                <option value="社團法人花蓮縣家庭照顧者關懷協會-干城">家庭照顧者關懷協會-干城（吉安）</option>
-                <option value="吉安鄉南昌/南華社區發展協會">吉安鄉南昌／南華社區發展協會</option>
-                <option value="社團法人優格社會福利服務學會(壽豐)">優格社福學會（壽豐鄉）</option>
-                <option value="社團法人花蓮縣光復鄉老人會">花蓮縣光復鄉老人會</option>
-                <option value="花蓮縣光復鄉大進社區發展協會">光復鄉大進社區發展協會</option>
-                <option value="花蓮縣真善美發展協會(瑞穗)">花蓮縣真善美發展協會（瑞穗鄉）</option>
-                <option value="玉里慈濟醫院-三民/玉里失智據點">玉里慈濟醫院-三民／失智據點</option>
-                <option value="慈濟基金會-玉里溝仔頂">慈濟基金會-玉里溝仔頂</option>
-                <option value="門諾基金會(玉里/萬寧)">門諾基金會（玉里／富里萬寧）</option>
-                <option value="花蓮縣勝安宗壇發展協會(玉里)">花蓮縣勝安宗壇發展協會（玉里）</option>
-              </optgroup>
-              <optgroup label="新北市 / 臺北市">
-                <option value="新北市敏動齡健康關懷協會(板橋)">新北市敏動齡健康關懷協會（板橋）</option>
-                <option value="新北市三重區慈祐里辦公處">新北市三重區慈祐里辦公處</option>
-                <option value="新北市三重區瑞德里辦公處">新北市三重區瑞德里辦公處</option>
-                <option value="新北市三重區永吉里辦公處">新北市三重區永吉里辦公處</option>
-                <option value="新北市三重區田中里辦公處">新北市三重區田中里辦公處</option>
-                <option value="台灣體適能健康促進協會(台北黎忠)">台灣體適能健康促進協會（台北黎忠）</option>
-              </optgroup>
-              <optgroup label="臺東縣">
-                <option value="臺東縣關山鎮里壠社區發展協會">臺東縣關山鎮里壠社區發展協會</option>
-                <option value="廣原社區關懷據點(海端鄉)">臺東縣海端鄉廣原社區關懷據點</option>
-              </optgroup>
-              <option value="其他新開班據點">其他新開班據點</option>
-            </select>
+            <label>所屬據點名稱 *</label>
+            <input type="text" id="siteName" placeholder="例：花蓮縣花蓮市碧雲莊社區" required>
           </div>
           <div class="form-group">
             <label>受試者編號 / 姓名 *</label>
-            <input type="text" id="studentId" placeholder="例：GF-001 王大明" required>
+            <input type="text" id="studentId" placeholder="例：王大明" required>
           </div>
         </div>
 
@@ -184,14 +149,13 @@
             <input type="text" id="instructorName" placeholder="請填寫施測師資姓名" required>
           </div>
         </div>
-
         <button type="submit" id="gasSubmitBtn" class="btn btn-primary" style="width:100%;padding:13px;font-size:1.05rem;">☁️ 確認送出檢測紀錄至 Google Sheets 雲端</button>
         <p id="gasStatusMsg" style="margin-top:10px;font-weight:700;text-align:center;"></p>
       </form>
     </div>
 
     <!-- 右側：前後測重疊雷達圖與五級分即時診斷表 -->
-    <div class="card">
+    <div class="card" id="radar-print-section">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
         <h3 style="margin:0;">🕸️ 個人體能評估雷達圖（前後測重疊對比）</h3>
         <span id="totalScoreBadge" class="badge badge-blue" style="font-size:0.95rem;">目前階段總點數：-- / 25 分</span>
@@ -217,6 +181,11 @@
           <tbody id="radarSummaryBody"></tbody>
         </table>
       </div>
+      <!-- 👇 請將列印按鈕加在這裡 👇 -->
+      <button type="button" onclick="window.print()" class="no-print" style="margin-top: 20px; width: 100%; background-color: #FFB74D; color: white; padding: 12px; border-radius: 5px; border: none; cursor: pointer; font-size: 16px; font-weight: bold;">
+        🖨️ 單獨列印雷達圖與表格 (A4尺寸)
+      </button>
+      <!-- 👆 列印按鈕結束 👆 -->
     </div>
   </div>
 </div>
