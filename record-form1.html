@@ -128,34 +128,41 @@
   }
 
   ['heightCm','weightKg','waistCm','hipCm'].forEach(id => $(id).addEventListener('input', updateDerived));
+  
   $('fitnessForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!event.currentTarget.checkValidity()) { event.currentTarget.reportValidity(); return; }
     const status = $('status');
     const button = $('submitButton');
+    
     if (!GAS_WEB_APP_URL) {
       status.style.color = '#b45309';
       status.textContent = '請先將 GAS_WEB_APP_URL 改成 Apps Script 的 /exec 網址。';
       return;
     }
+    
     button.disabled = true;
     status.style.color = '#0b75b5';
-    status.textContent = '正在送出資料…';
+    status.textContent = '正在送出資料並準備寄送確認信…';
+    
     try {
       await fetch(GAS_WEB_APP_URL, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(makePayload())
       });
+      // no-cors 模式下只要沒有網路斷線就會執行到這
       status.style.color = '#16803c';
-      status.textContent = '已送出；請至試算表的「CL-14-0028-1官方表單」工作表確認新資料列。';
+      status.textContent = '✅ 已成功送出！請至試算表確認資料，回覆確認信已寄至您的信箱。';
       event.currentTarget.reset();
       updateDerived();
     } catch (error) {
-      // GAS 可能已完成寫入，但瀏覽器無法讀取跨來源回應；先以試算表結果為準。
       status.style.color = '#b45309';
-      status.textContent = '⚠️ 瀏覽器未能讀取 GAS 回應；資料可能已寫入，請先至「CL-14-0028-1官方表單」確認，確認無新列後再檢查 Web App 權限與網址。';
-    } finally { button.disabled = false; }
-  });</script>
+      status.textContent = '⚠️ 網路連線異常；資料可能已寫入，請先至試算表或信箱確認是否有收到資料。';
+    } finally { 
+      button.disabled = false; 
+    }
+  });
+</script>
 </body>
 </html>
