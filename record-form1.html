@@ -94,7 +94,7 @@
   // 使用者提供的 Apps Script「網頁應用程式」/exec 網址。
 
   const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxagxu75HFgU8OmoqKPO7e7SDQMaI9yUy7EeHRjD5F_QlTN8mOvj8TI7d0EOgcPHIId/exec';
-                           
+
   const $ = (id) => document.getElementById(id);
 
   const value = (id) => $(id).value.trim();
@@ -214,7 +214,7 @@
       updateDerived();
     } catch (error) {
       status.style.color = '#b45309';
-      status.textContent = '⚠️ 未取得明確的寫入成功確認：' + error.message + '。請檢查 Web App 是否重新部署為「所有人」，並先確認試算表後再重送。';
+      status.textContent = '⚠️ 請確認是否成功收到回覆Email信件：' + '。若已收到email回信，表示成功送出，未收到信件，請重送資料。';
     } finally { button.disabled = false; }
 
   });
