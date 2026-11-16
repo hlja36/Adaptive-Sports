@@ -94,7 +94,7 @@
 
   // 使用者提供的 Apps Script「網頁應用程式」/exec 網址。
 
-  const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxagxu75HFgU8OmoqKPO7e7SDQMaI9yUy7EeHRjD5F_QlTN8mOvj8TI7d0EOgcPHIId/exec';  
+  const SUBMIT_URL = '/.netlify/functions/submit-fitness';  
 
   const $ = (id) => document.getElementById(id);
 
@@ -166,63 +166,59 @@
 
   ['heightCm','weightKg','waistCm','hipCm'].forEach(id => $(id).addEventListener('input', updateDerived));
 
-  $('fitnessForm').addEventListener('submit', async (event) => {
+$('fitnessForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-    event.preventDefault();
+  const form = event.currentTarget;
+  const status = $('status');
+  const button = $('submitButton');
 
-    if (!event.currentTarget.checkValidity()) { event.currentTarget.reportValidity(); return; }
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
 
-    const status = $('status');
+  updateDerived();
 
-    const button = $('submitButton');
+  button.disabled = true;
+  status.style.color = '#0b75b5';
+  status.textContent = '正在傳送並確認資料寫入結果…';
 
-    if (!GAS_WEB_APP_URL) {
+  try {
+    const response = await fetch(SUBMIT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(makePayload())
+    });
 
-      status.style.color = '#b45309';
+    const result = await response.json();
 
-      status.textContent = '請先將 GAS_WEB_APP_URL 改成 Apps Script 的 /exec 網址。';
-
-      return;
-
+    if (!response.ok || result.success !== true) {
+      throw new Error(
+        result.message || 'Google Sheets 尚未確認寫入成功'
+      );
     }
 
-    button.disabled = true;
+    status.style.color = '#16803c';
+    status.textContent =
+      '資料已成功寫入 Google Sheets，請確認工作表紀錄。';
 
-    status.style.color = '#0b75b5';
+    form.reset();
+    updateDerived();
 
-    status.textContent = '正在送出資料…';
+  } catch (error) {
+    status.style.color = '#b45309';
+    status.textContent =
+      '⚠️ 未取得明確的寫入成功確認：' +
+      error.message +
+      '。請先檢查 Google Sheets 是否已有該筆資料，避免重複送出。';
 
-    try {
-
-      await fetch(GAS_WEB_APP_URL, {
-
-        method: 'POST', mode: 'no-cors',
-
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-
-        body: JSON.stringify(makePayload())
-
-      });
-
-      status.style.color = '#16803c';
-
-      status.textContent = '已送出；請至試算表的「CL-14-0028-1官方表單」工作表確認新資料列。';
-
-      event.currentTarget.reset();
-
-      updateDerived();
-
-    } catch (error) {
-
-      // GAS 可能已完成寫入，但瀏覽器無法讀取跨來源回應；先以試算表結果為準。
-
-      status.style.color = '#b45309';
-
-      status.textContent = '⚠️ 瀏覽器未能讀取 GAS 回應；資料可能已寫入，請先至「CL-14-0028-1官方表單」確認，確認無新列後再檢查 Web App 權限與網址。';
-
-    } finally { button.disabled = false; }
-
-  });
+  } finally {
+    button.disabled = false;
+  }
+});
 </script>
 </body>
 </html>
