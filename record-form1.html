@@ -92,70 +92,131 @@
 </main>
 <script>
   // 使用者提供的 Apps Script「網頁應用程式」/exec 網址。
-  const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxagxu75HFgU8OmoqKPO7e7SDQMaI9yUy7EeHRjD5F_QlTN8mOvj8TI7d0EOgcPHIId/exec';
+
+  const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyo1txEFCYSpk4a1prHAyjjIMP4NnyCvAwGgBCG0Zd1EpbddRipINxJYOtaR_YI5-rl/exec';
+
   const $ = (id) => document.getElementById(id);
+
   const value = (id) => $(id).value.trim();
 
+
+
   function updateDerived() {
+
     const h = Number(value('heightCm'));
+
     const w = Number(value('weightKg'));
+
     const waist = Number(value('waistCm'));
+
     const hip = Number(value('hipCm'));
+
     $('bmi').value = h > 0 && w > 0 ? (w / Math.pow(h / 100, 2)).toFixed(2) : '';
+
     $('whr').value = waist > 0 && hip > 0 ? (waist / hip).toFixed(2) : '';
+
   }
+
+
 
   function makePayload() {
+
     return {
+
       action: 'officialForm',
+
       formId: 'CL-14-0028-1',
+
       siteName: value('siteName'), testStage: value('testStage'),
+
       respondentEmail: value('respondentEmail'), tester: value('tester'),
+
       participantName: value('participantName'), gender: value('gender'),
+
       testDate: value('testDate'), birthYearRoc: value('birthYearRoc'), birthMonth: value('birthMonth'),
+
       body: { heightCm:value('heightCm'), weightKg:value('weightKg'), bmi:value('bmi'), waistCm:value('waistCm'), hipCm:value('hipCm'), whr:value('whr') },
+
       bloodPressure: {
+
         first: { systolic:value('sbp1'), diastolic:value('dbp1'), heartRate:value('hr1') },
+
         second: { systolic:value('sbp2'), diastolic:value('dbp2'), heartRate:value('hr2') }
+
       },
+
       fitness: {
+
         gripFirst:value('gripFirst'), gripSecond:value('gripSecond'),
+
         oneLegFirst:value('oneLegFirst'), oneLegSecond:value('oneLegSecond'),
+
         walk5mFirst:value('walk5mFirst'), walk5mSecond:value('walk5mSecond'),
+
         chairStand30s:value('chairStand30s'), adductorFirst:value('adductorFirst'), adductorSecond:value('adductorSecond')
+
       }
+
     };
+
   }
 
+
+
   ['heightCm','weightKg','waistCm','hipCm'].forEach(id => $(id).addEventListener('input', updateDerived));
+
   $('fitnessForm').addEventListener('submit', async (event) => {
+
     event.preventDefault();
+
     if (!event.currentTarget.checkValidity()) { event.currentTarget.reportValidity(); return; }
+
     const status = $('status');
+
     const button = $('submitButton');
+
     if (!GAS_WEB_APP_URL) {
+
       status.style.color = '#b45309';
+
       status.textContent = '請先將 GAS_WEB_APP_URL 改成 Apps Script 的 /exec 網址。';
+
       return;
+
     }
+
     button.disabled = true;
+
     status.style.color = '#0b75b5';
+
     status.textContent = '正在送出資料…';
+
     try {
-      await fetch(GAS_WEB_APP_URL, {
-        method: 'POST', mode: 'no-cors',
+      const response = await fetch(GAS_WEB_APP_URL, {
+        method: 'POST',
+        mode: 'cors',
+        redirect: 'follow',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(makePayload())
       });
+      const text = await response.text();
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      if (!text || text.trim().charAt(0) !== '{') {
+        throw new Error('Apps Script 回傳 HTML 或非 JSON（可能是部署權限頁）');
+      }
+      const result = JSON.parse(text);
+      if (result.status !== 'success') {
+        throw new Error(result.message || 'Apps Script 未回傳成功狀態');
+      }
       status.style.color = '#16803c';
       status.textContent = '已送出；請至試算表的「CL-14-0028-1官方表單」工作表確認新資料列。';
       event.currentTarget.reset();
       updateDerived();
     } catch (error) {
-      // GAS 可能已完成寫入，但瀏覽器無法讀取跨來源回應；先以試算表結果為準。
       status.style.color = '#b45309';
-      status.textContent = '⚠️ 瀏覽器未能讀取 GAS 回應；資料可能已寫入，請先至「CL-14-0028-1官方表單」確認，確認無新列後再檢查 Web App 權限與網址。';
+      status.textContent = '⚠️ 未取得明確的寫入成功確認：' + error.message + '。請檢查 Web App 是否重新部署為「所有人」，並先確認試算表後再重送。';
     } finally { button.disabled = false; }
+
   });
 </script>
 </body>
