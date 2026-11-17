@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2b5d50" />
+    <meta name="description" content="CL-14-0028 預防改善尿失禁問卷調查" />
+    <title>CL-14-0028｜預防改善尿失禁問卷調查</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #26352f;
+  --muted: #718078;
+  --line: #cfdad5;
+  --paper: #fff;
+  --page: #f5f8f7;
+  --hint: #edf8fc;
+  --hint-line: #b9dce8;
+  --mint: #eaf4f0;
+  --accent: #11745d;
+  --accent-dark: #0a5b49;
+  --accent-soft: #cfe9df;
+  --coral: #b64f43;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--page); font-family: 'Noto Sans TC', Arial, sans-serif; font-size: 12px; line-height: 1.45; }
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; }
+.site-shell { min-height: 100vh; }
+.topbar { display: none; }
+.page-wrap { width: min(calc(100% - 10px), 980px); margin: 0 auto; padding: 6px 0 14px; }
+.hero { padding: 15px 15px 10px; background: var(--paper); border: 1px solid var(--line); border-bottom: 0; border-radius: 5px 5px 0 0; box-shadow: 0 1px 4px rgba(35, 73, 61, .05); }
+.hero-copy { max-width: none; }
+.eyebrow { margin: 0 0 5px; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: .02em; }
+.hero h1 { margin: 0; color: var(--accent-dark); font-size: 18px; line-height: 1.35; letter-spacing: 0; font-weight: 800; }
+.hero h1 em { color: inherit; font-style: normal; }
+.hero-description { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+.hero-facts, .hero-art { display: none; }
+.preview-notice { margin: 0 15px 10px; padding: 7px 10px; display: flex; align-items: center; gap: 7px; color: #3e6872; background: var(--hint); border: 1px solid var(--hint-line); border-radius: 4px; font-size: 10px; line-height: 1.5; }
+.notice-icon { width: 15px; height: 15px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; color: #347487; border: 1px solid #8dbdcb; border-radius: 50%; font-family: Georgia, serif; font-size: 10px; font-weight: 700; }
+.preview-notice > span:nth-child(2) { flex: 1; }
+.preview-notice a { color: #236e7e; font-size: 10px; font-weight: 700; text-decoration: underline; white-space: nowrap; }
+.preview-notice code { padding: 1px 3px; background: #deeff5; border-radius: 2px; font-size: 9px; }
+#surveyForm { padding: 0 15px 10px; background: var(--paper); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 5px 5px; box-shadow: 0 1px 4px rgba(35, 73, 61, .05); }
+.form-section { display: block; margin: 0; padding: 12px 0 11px; background: transparent; border: 0; border-bottom: 1px solid #dfe7e3; border-radius: 0; box-shadow: none; }
+.form-section:last-of-type { border-bottom: 0; }
+.section-heading { display: flex; align-items: center; gap: 7px; padding: 0; margin: 0 0 10px; border: 0; }
+.section-index { width: 4px; height: 22px; flex: 0 0 auto; overflow: hidden; color: transparent; background: var(--accent); border: 0; font-size: 0; }
+.section-heading > div:last-child { min-width: 0; }
+.section-kicker { display: none; }
+.section-heading h2 { margin: 0; color: var(--accent-dark); font-size: 13px; line-height: 1.5; letter-spacing: 0; }
+.section-heading > div:last-child > p:last-child { margin: 1px 0 0; color: var(--muted); font-size: 9px; line-height: 1.35; }
+.field-grid, .question-stack { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 10px; }
+.full-width { grid-column: span 1; }
+.half-width { grid-column: span 1; }
+.field, fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
+.field label, fieldset legend { display: block; width: 100%; margin: 0 0 3px; color: var(--ink); font-size: 10px; font-weight: 700; line-height: 1.35; }
+.required { color: var(--coral); font-size: 11px; }
+.question-helper { margin: -1px 0 3px; color: var(--muted); font-size: 9px; }
+.field input[type='text'], .field input[type='email'], .field input[type='date'], .field input[type='number'] { width: 100%; height: 29px; padding: 4px 8px; color: var(--ink); background: #fff; border: 1px solid #bfcac5; border-radius: 4px; outline: none; font-size: 11px; transition: border-color .15s, box-shadow .15s, background .15s; }
+.field input::placeholder { color: #a8b2ae; }
+.field input:focus { background: #fbfffd; border-color: #67a991; box-shadow: 0 0 0 2px rgba(17,116,93,.1); }
+.field input:user-invalid:not(:focus) { border-color: #d28c83; }
+.field-hint { display: inline; margin-left: 4px; color: #8c9993; font-size: 8px; line-height: 1.2; }
+.input-suffix { display: flex; align-items: center; position: relative; }
+.input-suffix input { padding-right: 30px !important; }
+.input-suffix span { position: absolute; right: 8px; color: var(--muted); font-size: 9px; }
+.input-suffix.compact { max-width: none; }
+.option-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.option-list.inline-options { gap: 5px 18px; }
+.choice { min-height: 29px; padding: 4px 9px; display: inline-flex !important; align-items: center; gap: 6px; color: #465650 !important; background: #fff; border: 1px solid #bfcac5; border-radius: 4px; font-size: 10px !important; font-weight: 500 !important; cursor: pointer; transition: color .15s, border-color .15s, background .15s; }
+.choice:hover { border-color: #67a991; background: #f1faf6; }
+.choice input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.choice-mark { width: 13px; height: 13px; display: inline-block; flex: 0 0 auto; border: 1px solid #9daba4; border-radius: 50%; position: relative; }
+.choice input:checked + .choice-mark { border-color: var(--accent); background: var(--accent); }
+.choice input:checked + .choice-mark::after { content: ''; position: absolute; width: 4px; height: 4px; top: 4px; left: 4px; background: #fff; border-radius: 50%; }
+.choice:has(input:checked) { color: var(--accent-dark) !important; border-color: #67a991; background: var(--mint); }
+.choice small { color: var(--coral); font-size: 8px; font-weight: 500; }
+.conditional-input { max-width: 250px; margin-top: 5px; }
+.accent-question { padding: 8px; background: #fff9f3; border-left: 3px solid #dfaa75; border-radius: 3px; }
+.logic-note { margin: 5px 0 0; color: #936d46; font-size: 9px; }
+.logic-note span { font-size: 12px; margin-right: 3px; }
+.conditional-question.is-skipped, .conditional-life-question.is-skipped, .life-impact-section .question-field.is-skipped { display: none; }
+.question-field { padding: 0; border: 0; border-radius: 0; }
+.question-field legend, .question-field > label { margin-bottom: 3px; }
+.question-field .option-list { gap: 5px; }
+.question-field .choice { min-width: 70px; }
+.review-section { background: transparent; }
+.review-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 10px; margin-bottom: 9px; border-top: 1px solid var(--line); }
+.review-row { display: grid; grid-template-columns: 1fr; gap: 1px; min-width: 0; padding: 5px 3px; border-bottom: 1px solid #e3eae6; font-size: 9px; }
+.review-row dt { color: var(--muted); }
+.review-row dd { margin: 0; overflow-wrap: anywhere; color: var(--ink); font-weight: 700; }
+.confirm-box { display: flex; align-items: flex-start; gap: 7px; padding: 8px; color: var(--accent-dark); background: var(--mint); font-size: 10px; cursor: pointer; }
+.confirm-box input { position: absolute; opacity: 0; }
+.check-mark { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 1px; background: #fff; border: 1px solid #8eafa1; border-radius: 3px; position: relative; }
+.confirm-box input:checked + .check-mark { background: var(--accent); border-color: var(--accent); }
+.confirm-box input:checked + .check-mark::after { content: '✓'; position: absolute; inset: -2px 0 0; color: #fff; text-align: center; font-size: 12px; }
+.review-note { margin-top: 6px; display: flex; gap: 6px; align-items: flex-start; color: var(--muted); font-size: 9px; line-height: 1.45; }
+.form-actions { min-height: 46px; padding: 10px 0 0; display: flex; align-items: center; gap: 10px; }
+.form-end-note { color: var(--muted); font-size: 9px; }
+.action-spacer { flex: 1; }
+.button { min-height: 31px; padding: 6px 16px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 4px; font-size: 11px; font-weight: 700; text-decoration: none; cursor: pointer; transition: background .15s, box-shadow .15s; }
+.button-primary { color: #fff; background: var(--accent); box-shadow: none; }
+.button-primary:hover { background: var(--accent-dark); }
+.button-quiet { color: var(--accent); background: transparent; border-color: #b9cbc2; }
+.button-quiet:hover { background: var(--mint); }
+.button:disabled { opacity: .55; cursor: wait; }
+.success-panel { padding: 55px 25px; text-align: center; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; }
+.success-panel[hidden] { display: none; }
+.success-seal { width: 52px; height: 52px; margin: 0 auto 13px; display: grid; place-items: center; color: #fff; background: var(--accent); border-radius: 50%; }
+.success-seal span { font-size: 25px; }
+.success-panel .eyebrow { color: var(--accent); }
+.success-panel h2 { margin: 0; color: var(--accent-dark); font-size: 24px; }
+.success-panel p:not(.eyebrow) { max-width: 450px; margin: 9px auto 15px; color: var(--muted); font-size: 11px; }
+.success-id { display: inline-block; padding: 6px 11px; color: var(--muted); background: var(--mint); font-family: 'DM Mono', monospace; font-size: 9px; }
+.success-id strong { color: var(--accent); }
+.success-actions { margin-top: 19px; display: flex; justify-content: center; gap: 8px; }
+.site-footer { width: min(calc(100% - 10px), 980px); margin: 0 auto; padding: 10px 3px 17px; display: flex; gap: 15px; color: #87938d; font-family: 'DM Mono', monospace; font-size: 8px; }
+.site-footer a { margin-left: auto; color: var(--accent); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 560px) {
+  body { font-size: 11px; }
+  .page-wrap { width: calc(100% - 8px); padding-top: 4px; }
+  .hero { padding: 13px 11px 9px; }
+  .hero h1 { font-size: 16px; }
+  .preview-notice { margin-inline: 11px; align-items: flex-start; flex-wrap: wrap; }
+  .preview-notice > span:nth-child(2) { min-width: calc(100% - 25px); }
+  .preview-notice a { margin-left: 22px; }
+  #surveyForm { padding-inline: 11px; }
+  .field-grid, .question-stack { grid-template-columns: 1fr; gap: 9px; }
+  .full-width, .half-width { grid-column: auto; }
+  .review-list { grid-template-columns: 1fr 1fr; }
+  .form-actions { align-items: stretch; flex-direction: column; }
+  .form-end-note { width: 100%; }
+  .action-spacer { display: none; }
+  .button { width: 100%; }
+  .site-footer { width: calc(100% - 8px); flex-wrap: wrap; }
+  .site-footer a { margin-left: 0; width: 100%; }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="./app.html" aria-label="回到問卷首頁">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>
+            <strong>健康促進調查</strong>
+            <small>CL-14-0028-2</small>
+          </span>
+        </a>
+        <div class="topbar-meta">
+          <span class="secure-dot"></span>
+          <span>資料僅供本次調查使用</span>
+        </div>
+      </header>
+
+      <main class="page-wrap">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow">CL-14-0028-2／預防改善計畫</p>
+            <h1 id="page-title">CL-14-0028-2 預防改善尿失禁問卷調查</h1>
+            <p class="hero-description">請依照最近的實際情況填寫。必填欄位以 <span class="required">*</span> 標示，完成後請按頁面下方按鈕送出資料。</p>
+            <div class="hero-facts" aria-label="問卷資訊">
+              <span><b>⌁</b> 約 5 分鐘</span>
+              <span><b>✦</b> 共 15 題</span>
+              <span><b>◌</b> 可於最後確認</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="art-leaf leaf-one"></div>
+            <div class="art-leaf leaf-two"></div>
+            <span class="art-number">02</span>
+          </div>
+        </section>
+
+        <div id="previewNotice" class="preview-notice" role="status">
+          <span class="notice-icon">i</span>
+          <span><strong>目前為預覽模式</strong>　完成 Apps Script 部署後，把 Web App URL 填入 <code>app.js</code> 的設定值即可啟用寄信與寫入試算表。</span>
+          <a href="./apps-script/Code.gs" download>下載 Apps Script</a>
+          <a href="./CL-14-0028-2預防改善尿失禁問卷調查-Google表單.pdf" download>下載原始 PDF</a>
+        </div>
+
+        <form id="surveyForm" novalidate>
+          <section class="form-section" data-step="1" data-title="施測資料" aria-labelledby="section-1-title">
+            <div class="section-heading">
+              <div class="section-index">01</div>
+              <div><p class="section-kicker">開始之前</p><h2 id="section-1-title">施測資料</h2><p>先記錄這次問卷的施測資訊，方便後續比對前測與後測結果。</p></div>
+            </div>
+
+            <div class="field-grid">
+              <div class="field full-width">
+                <label for="testDate">施測日期 <span class="required">*</span></label>
+                <input id="testDate" name="testDate" type="date" required />
+                <span class="field-hint">請填寫本次實際填答日期</span>
+              </div>
+
+              <fieldset class="field full-width">
+                <legend>前測／後測 <span class="required">*</span></legend>
+                <p class="question-helper">請選擇本次問卷的測量階段。</p>
+                <div class="option-list inline-options">
+                  <label class="choice"><input type="radio" name="phase" value="前測" required /><span class="choice-mark"></span><span>前測</span></label>
+                  <label class="choice"><input type="radio" name="phase" value="後測" /><span class="choice-mark"></span><span>後測</span></label>
+                </div>
+              </fieldset>
+
+              <div class="field full-width">
+                <label for="site">施測據點 <span class="required">*</span></label>
+                <input id="site" name="site" type="text" placeholder="例如：花蓮宜昌" required />
+                <span class="field-hint">請填寫縣市＋據點名稱</span>
+              </div>
+
+              <div class="field full-width">
+                <label for="siteEmail">施測據點 E-mail <span class="required">*</span></label>
+                <input id="siteEmail" name="siteEmail" type="email" placeholder="site@example.org" required />
+                <span class="field-hint">請確認信箱正確，系統會寄送一份填答回覆。</span>
+              </div>
+
+              <div class="field full-width">
+                <label for="staff">施測人員 <span class="required">*</span></label>
+                <input id="staff" name="staff" type="text" placeholder="例如：王小明" required />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="2" data-title="受試者基本資料" aria-labelledby="section-2-title">
+            <div class="section-heading">
+              <div class="section-index">02</div>
+              <div><p class="section-kicker">關於填答者</p><h2 id="section-2-title">受試者基本資料</h2><p>以下資料用於辨識同一位受試者的前後測紀錄，請依照表單格式填寫。</p></div>
+            </div>
+            <div class="field-grid">
+              <div class="field full-width">
+                <label for="participantId">受試者編號／姓名 <span class="required">*</span></label>
+                <input id="participantId" name="participantId" type="text" placeholder="例如：973-02-001" pattern=".{3,}" required />
+                <span class="field-hint">輸入格式：973-02-001（3碼-2碼-3碼，不足碼請填 0）</span>
+              </div>
+              <fieldset class="field half-width">
+                <legend>性別</legend>
+                <div class="option-list inline-options">
+                  <label class="choice"><input type="radio" name="gender" value="男" /><span class="choice-mark"></span><span>男</span></label>
+                  <label class="choice"><input type="radio" name="gender" value="女" /><span class="choice-mark"></span><span>女</span></label>
+                </div>
+              </fieldset>
+              <div class="field half-width">
+                <label for="age">年齡</label>
+                <div class="input-suffix"><input id="age" name="age" type="number" min="1" max="120" placeholder="例如：46" /><span>歲</span></div>
+                <span class="field-hint">請輸入數字，例如「46 歲」請填入 46。</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="3" data-title="問題一｜排尿狀況" aria-labelledby="section-3-title">
+            <div class="section-heading">
+              <div class="section-index">03</div>
+              <div><p class="section-kicker">問題一</p><h2 id="section-3-title">排尿狀況</h2><p>請回想最近的生活情形，選擇最符合您的答案。</p></div>
+            </div>
+            <div class="question-stack">
+              <div class="field question-field">
+                <label for="q1">1．一天當中，自起床後到晚上睡覺前，上廁所幾次？ <span class="required">*</span></label>
+                <div class="input-suffix compact"><input id="q1" name="q1" type="number" min="0" max="50" required /><span>次</span></div>
+              </div>
+              <div class="field question-field">
+                <label for="q2">2．一個晚上，從睡著到起床前這段期間，上廁所幾次？ <span class="required">*</span></label>
+                <div class="input-suffix compact"><input id="q2" name="q2" type="number" min="0" max="20" required /><span>次</span></div>
+              </div>
+              <fieldset class="field question-field">
+                <legend>3．尿勢如何呢？ <span class="required">*</span></legend>
+                <div class="option-list">
+                  <label class="choice"><input type="radio" name="q3" value="1. 弱" required /><span class="choice-mark"></span><span>1. 弱</span></label>
+                  <label class="choice"><input type="radio" name="q3" value="2. 強" /><span class="choice-mark"></span><span>2. 強</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="field question-field">
+                <legend>4．小便之中，可以突然停尿嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options">
+                  <label class="choice"><input type="radio" name="q4" value="1. 可以" required /><span class="choice-mark"></span><span>1. 可以</span></label>
+                  <label class="choice"><input type="radio" name="q4" value="3. 不行" /><span class="choice-mark"></span><span>3. 不行</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="field question-field accent-question">
+                <legend>5．曾經有在任何情況下漏尿、滲尿（內褲微濕）過嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options">
+                  <label class="choice"><input type="radio" name="q5" value="有" required /><span class="choice-mark"></span><span>有</span><small>開放第 6–15 題</small></label>
+                  <label class="choice"><input type="radio" name="q5" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label>
+                </div>
+                <p class="logic-note"><span>↳</span> 選擇「有」後，系統會開放第 6–15 題作答。</p>
+              </fieldset>
+            </div>
+          </section>
+
+          <section class="form-section life-impact-section" data-step="4" data-title="問題二｜生活影響" aria-labelledby="section-4-title">
+            <div class="section-heading">
+              <div class="section-index">04</div>
+              <div><p class="section-kicker">問題二</p><h2 id="section-4-title">生活影響</h2><p>第 5 題選擇「有」後，才會開放第 6–15 題作答。</p></div>
+            </div>
+            <div class="question-stack">
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>6．上廁所途中，曾經因來不及而漏尿過嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q6" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q6" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>7．曾經有過，正想要上廁所之際，就已漏尿的經驗嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q7" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q7" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>8．曾經在不知不覺之中，漏尿過嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q8" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q8" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>9．因擔心漏尿的事情，故很在意上廁所的事情嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q9" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q9" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>10．因擔心漏尿的事情，故刻意提前上廁所嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q10" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q10" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>11．因擔心漏尿的事情，故刻意少喝水嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q11" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q11" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>12．因擔心漏尿的事情，故刻意減少外出的次數嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q12" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q12" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field conditional-question" data-conditional="q5-no">
+                <legend>13．漏尿影響你的工作或家事的程度多少呢？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q13" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q13" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field">
+                <legend>14．因為漏尿的問題而不去運動嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q14" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q14" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+              <fieldset class="field question-field">
+                <legend>15．因為漏尿的問題而影響到與親朋朋友的交往嗎？ <span class="required">*</span></legend>
+                <div class="option-list inline-options"><label class="choice"><input type="radio" name="q15" value="有" required /><span class="choice-mark"></span><span>有</span></label><label class="choice"><input type="radio" name="q15" value="沒有" /><span class="choice-mark"></span><span>沒有</span></label></div>
+              </fieldset>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <span class="form-end-note">請完成以上所有必填欄位後直接送出。</span>
+            <span class="action-spacer"></span>
+            <button type="submit" id="submitButton" class="button button-primary">確認送出 <span>↗</span></button>
+          </div>
+        </form>
+
+        <section id="successPanel" class="success-panel" hidden aria-live="polite">
+          <div class="success-seal"><span>✓</span></div>
+          <p class="eyebrow">完成，謝謝您的填答</p>
+          <h2 id="successTitle">問卷已送出</h2>
+          <p id="successMessage">我們已收到您的回覆。若施測據點 E-mail 設定正確，請稍後至該信箱查收副本。</p>
+          <div class="success-id">回覆編號 <strong id="successId">—</strong></div>
+          <div class="success-actions"><button type="button" id="newResponseButton" class="button button-primary">填寫下一份問卷</button><a href="./app.html" class="button button-quiet">回到首頁</a></div>
+        </section>
+      </main>
+
+      <footer class="site-footer"><span>CL-14-0028-2</span><span>預防改善尿失禁問卷調查</span><a href="./README.md">部署說明</a></footer>
+    </div>
+    <script>
+/*
+ * CL-14-0028-2 問卷前端
+ * 部署 Google Apps Script 後，將 Web App URL 貼到 APPS_SCRIPT_URL。
+ * 也可用網址參數預覽：/?script=https://script.google.com/macros/s/xxxx/exec
+ */
+const APPS_SCRIPT_URL = '';
+
+const form = document.querySelector('#surveyForm');
+const sections = [...document.querySelectorAll('.form-section')];
+const submitButton = document.querySelector('#submitButton');
+const successPanel = document.querySelector('#successPanel');
+const previewNotice = document.querySelector('#previewNotice');
+const conditionalQuestions = [...document.querySelectorAll('.life-impact-section .question-field')];
+
+const scriptUrl = new URLSearchParams(window.location.search).get('script') || APPS_SCRIPT_URL;
+if (scriptUrl) previewNotice.hidden = true;
+document.querySelector('#testDate').value = new Date().toISOString().slice(0, 10);
+
+function visibleRequiredFields() {
+  return [...form.querySelectorAll('input[required], select[required], textarea[required]')].filter((input) => {
+    const parent = input.closest('.conditional-question');
+    return !parent || !parent.classList.contains('is-skipped');
+  });
+}
+
+function validateForm() {
+  syncConditionalFlow();
+  const fields = visibleRequiredFields();
+  let firstInvalid = null;
+  fields.forEach((field) => {
+    if (field.type === 'radio') {
+      const group = form.querySelectorAll(`input[type="radio"][name="${CSS.escape(field.name)}"]`);
+      if (![...group].some((radio) => radio.checked)) firstInvalid ||= field;
+    } else if (!field.checkValidity()) {
+      firstInvalid ||= field;
+    }
+  });
+  if (firstInvalid) {
+    firstInvalid.reportValidity();
+    firstInvalid.closest('.field')?.classList.add('field-attention');
+    setTimeout(() => firstInvalid.closest('.field')?.classList.remove('field-attention'), 1000);
+    return false;
+  }
+  return true;
+}
+
+function syncConditionalFlow() {
+  const q5 = form.querySelector('input[name="q5"]:checked')?.value;
+  const shouldUnlock = q5 === '有';
+  conditionalQuestions.forEach((question) => {
+    const locked = !shouldUnlock;
+    question.classList.toggle('is-skipped', locked);
+    question.setAttribute('aria-hidden', String(locked));
+    question.querySelectorAll('input').forEach((input) => {
+      input.disabled = locked;
+      input.required = shouldUnlock;
+      if (locked) input.checked = false;
+    });
+  });
+}
+
+function getFormValue(name) {
+  const value = new FormData(form).get(name);
+  return value === null ? '' : String(value).trim();
+}
+
+function buildPayload() {
+  const submissionId = `CL-${new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14)}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+  return {
+    submissionId,
+    submittedAt: new Date().toISOString(),
+    testDate: getFormValue('testDate'),
+    phase: getFormValue('phase'),
+    site: getFormValue('site'),
+    siteEmail: getFormValue('siteEmail'),
+    staff: getFormValue('staff'),
+    participantId: getFormValue('participantId'),
+    gender: getFormValue('gender'),
+    age: getFormValue('age'),
+    answers: Object.fromEntries(Array.from({ length: 15 }, (_, index) => {
+      const key = `q${index + 1}`;
+      return [key, getFormValue(key)];
+    })),
+  };
+}
+
+function showSuccess(payload, preview = false) {
+  form.hidden = true;
+  previewNotice.hidden = true;
+  successPanel.hidden = false;
+  document.querySelector('#successTitle').textContent = preview ? '預覽已完成' : '問卷已送出';
+  document.querySelector('#successMessage').textContent = preview
+    ? '這次是在預覽模式完成，資料尚未送至 Google 試算表。部署 Apps Script 並設定 Web App URL 後，即可正式收件與寄送回覆信。'
+    : '送出流程已完成。若 Apps Script 已正確部署，請稍後至施測據點 E-mail 查收回覆；副本會同步寄給設定的副本信箱。';
+  document.querySelector('#successId').textContent = payload.submissionId;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+form.addEventListener('change', (event) => {
+  if (event.target.name === 'q5') syncConditionalFlow();
+});
+form.addEventListener('input', (event) => {
+  event.target.closest('.field')?.classList.remove('field-attention');
+});
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (!validateForm()) return;
+  const payload = buildPayload();
+  submitButton.disabled = true;
+  submitButton.innerHTML = '傳送中…';
+  try {
+    if (!scriptUrl) {
+      showSuccess(payload, true);
+      return;
+    }
+    await fetch(scriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
+    showSuccess(payload, false);
+  } catch (error) {
+    submitButton.disabled = false;
+    submitButton.innerHTML = '確認送出 <span>↗</span>';
+    alert('目前無法連線到回覆服務，請稍後再試，或確認 Apps Script Web App URL 是否正確。');
+  }
+});
+document.querySelector('#newResponseButton').addEventListener('click', () => window.location.reload());
+
+syncConditionalFlow();
+
+    </script>
+  </body>
+</html>
